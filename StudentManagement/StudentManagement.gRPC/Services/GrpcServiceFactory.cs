@@ -1,7 +1,6 @@
 ﻿using Grpc.Net.Client;
-using QuickStart.gRPC;
 
-namespace QuickStart.Services
+namespace StudentManagement.gRPC.Services
 {
     public class GrpcServiceFactory
     {
@@ -15,7 +14,7 @@ namespace QuickStart.Services
         public T CreateGrpcClient<T>(Func<GrpcChannel, T> clientFactory)
         {
             var httpClient = _httpClientFactory.CreateClient("gRPC");
-            var channel = GrpcChannel.ForAddress("https://localhost:7010", new GrpcChannelOptions { HttpClient = httpClient });
+            var channel = GrpcChannel.ForAddress("https://localhost:7067", new GrpcChannelOptions { HttpClient = httpClient });
 
             return clientFactory(channel);
         }

@@ -1,18 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace QuanLySinhVien.Models
+namespace StudentManagement.NHibernate.Models
 {
     public class GiaoVien
     {
         [Key]
-        public int MaGV { get; set; }
+        public virtual int MaGV { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string TenGV { get; set; }
+        public virtual string TenGV { get; set; }
 
-        public DateTime? NgaySinh { get; set; }
-        
-        public ICollection<LopHoc> LopHocs { get; set; } = new List<LopHoc>();
+        public virtual DateTime? NgaySinh { get; set; }
+
+        public virtual ICollection<LopHoc> LopHocs { get; set; } = new List<LopHoc>();
     }
 }

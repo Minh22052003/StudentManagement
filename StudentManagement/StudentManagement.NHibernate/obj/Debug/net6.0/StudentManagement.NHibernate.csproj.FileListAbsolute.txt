@@ -1,0 +1,14 @@
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\bin\Debug\net6.0\StudentManagement.NHibernate.deps.json
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\bin\Debug\net6.0\StudentManagement.NHibernate.dll
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\bin\Debug\net6.0\StudentManagement.NHibernate.pdb
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.csproj.AssemblyReference.cache
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.GeneratedMSBuildEditorConfig.editorconfig
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.AssemblyInfoInputs.cache
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.AssemblyInfo.cs
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.csproj.CoreCompileInputs.cache
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.sourcelink.json
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.dll
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\refint\StudentManagement.NHibernate.dll
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\StudentManagement.NHibernate.pdb
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\obj\Debug\net6.0\ref\StudentManagement.NHibernate.dll
+D:\SOFTDREAM\source\StudentManagement\StudentManagement.NHibernate\bin\Debug\net6.0\DataAccess\NHibernateSessionManager.cs

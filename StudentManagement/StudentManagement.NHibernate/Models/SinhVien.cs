@@ -1,24 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace QuanLySinhVien.Models
+namespace StudentManagement.NHibernate.Models
 {
     public class SinhVien
     {
         [Key]
-        public int MaSV { get; set; }
+        public virtual int MaSV { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string TenSV { get; set; }
+        public virtual string TenSV { get; set; }
 
-        public DateTime? NgaySinh { get; set; }
+        public virtual DateTime? NgaySinh { get; set; }
 
         [StringLength(255)]
-        public string DiaChi { get; set; }
+        public virtual string DiaChi { get; set; }
 
-        public int? MaLop { get; set; }
+        public virtual int? MaLop { get; set; }
         [ForeignKey("MaLop")]
-        public LopHoc LopHoc { get; set; }
+        public virtual LopHoc LopHoc { get; set; }
     }
 }
