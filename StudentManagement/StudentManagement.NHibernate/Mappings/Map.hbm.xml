@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="QuanLySinhVien.Models" assembly="QuanLySinhVien">
+
+	<!-- Mapping cho bảng GiaoVien -->
+	<class name="GiaoVien" table="GiaoVien">
+		<id name="MaGV">
+			<generator class="identity" />
+		</id>
+
+		<property name="TenGV">
+			<column name="TenGV" length="100" not-null="true" />
+		</property>
+
+		<property name="NgaySinh" type="date">
+			<column name="NgaySinh" />
+		</property>
+
+		<set name="LopHocs" inverse="true" cascade="all">
+			<key column="MaGV" />
+			<one-to-many class="LopHoc" />
+		</set>
+	</class>
+
+	<!-- Mapping cho bảng LopHoc -->
+	<class name="LopHoc" table="LopHoc">
+		<id name="MaLop">
+			<generator class="identity" />
+		</id>
+
+		<property name="TenLop">
+			<column name="TenLop" length="100" not-null="true" />
+		</property>
+
+		<property name="MonHoc">
+			<column name="MonHoc" length="100" />
+		</property>
+
+		<many-to-one name="GiaoVien" column="MaGV" class="GiaoVien" not-null="false" />
+
+		<set name="SinhViens" inverse="true" cascade="all">
+			<key column="MaLop" />
+			<one-to-many class="SinhVien" />
+		</set>
+	</class>
+
+	<!-- Mapping cho bảng SinhVien -->
+	<class name="SinhVien" table="SinhVien">
+		<id name="MaSV">
+			<generator class="identity" />
+		</id>
+
+		<property name="TenSV">
+			<column name="TenSV" length="100" not-null="true" />
+		</property>
+
+		<property name="NgaySinh" type="date">
+			<column name="NgaySinh" />
+		</property>
+
+		<property name="DiaChi">
+			<column name="DiaChi" length="255" />
+		</property>
+
+		<many-to-one name="LopHoc" column="MaLop" class="LopHoc" not-null="false" />
+	</class>
+
+</hibernate-mapping>
