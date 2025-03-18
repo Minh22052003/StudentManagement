@@ -1,0 +1,65 @@
+﻿@page "/list-sv"
+@inject StudentManagement.gRPC.IServices.ISinhVienService SinhVienService
+
+<h3>Danh sách sinh viên</h3>
+<button class="btn btn-primary mb-3" >Thêm sinh viên</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã sinh viên</th>
+            <th>Họ và tên</th>
+            <th>Ngày sinh</th>
+            <th>Địa chỉ</th>
+            <th>Lớp học</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sinhvien in sinhviens.SinhViens)
+        {
+            <tr>
+                <td>@sinhvien.MaSV</td>
+                <td>@sinhvien.TenSV</td>
+                <td>@sinhvien.NgaySinh</td>
+                <td>@sinhvien.DiaChi</td>
+                <td>@sinhvien.MaLop</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="() => EditSinhVien(sinhvien.MaSV)">Edit</button>
+                    <button class="btn btn-danger" @onclick="() => DeleteSinhVien(sinhvien.MaSV)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    private StudentManagement.gRPC.DTOs.Student.SinhVienListResponse? sinhviens = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        sinhviens = await SinhVienService.GetListSinhVienAsync();
+    }
+
+    private void EditSinhVien(int maSV)
+    {
+        // NavigationManager.NavigateTo($"/edit-sv/{maSV}");
+    }
+
+    private async Task DeleteSinhVien(int maSV)
+    {
+        // var request = new StudentManagement.gRPC.DTOs.Student.RequestSinhVien { MaSV = maSV };
+        // var response = await SinhVienService.DeleteSinhVienAsync(request);
+
+        // if (response.IsSuccess)
+        // {
+        //     await LoadSinhViensAsync();
+        // }
+        // else
+        // {
+        //     Console.WriteLine("Xóa sinh viên thất bại: " + response.ErrorMessage);
+        // }
+    }
+
+}

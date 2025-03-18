@@ -1,71 +1,40 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
+using Microsoft.AspNetCore.Http;
 using NHibernate;
 using NHibernate.Cfg;
-using System;
+using StudentManagement.NHibernate.Mappings;
 using ISession = NHibernate.ISession;
 
 namespace StudentManagement.NHibernate.DataAccess
 {
     public class NHibernateSessionManager
     {
-        private const string CurrentSessionKey = "nhibernate.current_session";
         private static readonly ISessionFactory _sessionFactory;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         static NHibernateSessionManager()
         {
-            _sessionFactory = new Configuration().Configure("Configs/hibernate.cfg.xml").BuildSessionFactory();
+            _sessionFactory = Fluently.Configure()
+                .Database(MsSqlConfiguration.MsSql2012
+                    .ConnectionString(@"Server=DESKTOP-CNFI749\SQLEXPRESS01;Database=QuanLySinhVien;Integrated Security=True")
+                    .ShowSql()
+                ).Mappings(m =>
+                {
+                    m.FluentMappings.AddFromAssemblyOf<GiaoVienMap>();
+                    m.FluentMappings.AddFromAssemblyOf<LopHocMap>();
+                    m.FluentMappings.AddFromAssemblyOf<SinhVienMap>();
+                })
+                .BuildSessionFactory();
         }
 
-
-        public NHibernateSessionManager(IHttpContextAccessor httpContextAccessor)
+        public ISessionFactory GetSessionFactory()
         {
-            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            return _sessionFactory;
         }
 
-        public ISession GetCurrentSession()
-        {
-            var context = _httpContextAccessor.HttpContext;
-            if (context == null)
-            {
-                throw new InvalidOperationException("No active HTTP context.");
-            }
-
-            var currentSession = context.Items[CurrentSessionKey] as ISession;
-            if (currentSession == null)
-            {
-                currentSession = _sessionFactory.OpenSession();
-                context.Items[CurrentSessionKey] = currentSession;
-            }
-
-            return currentSession;
-        }
-        public ISession OpenSession()
+        public static ISession OpenSession()
         {
             return _sessionFactory.OpenSession();
-        }
-        public void CloseSession()
-        {
-            var context = _httpContextAccessor.HttpContext;
-            if (context == null)
-            {
-                return;
-            }
-
-            var currentSession = context.Items[CurrentSessionKey] as ISession;
-            if (currentSession != null)
-            {
-                currentSession.Close();
-                context.Items.Remove(CurrentSessionKey);
-            }
-        }
-
-        public static void CloseSessionFactory()
-        {
-            if (_sessionFactory != null)
-            {
-                _sessionFactory.Close();
-            }
         }
     }
 }

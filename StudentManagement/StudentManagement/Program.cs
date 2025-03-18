@@ -1,6 +1,11 @@
+using NHibernate;
 using StudentManagement.Data;
+using StudentManagement.gRPC.IServices;
 using StudentManagement.gRPC.Services;
+using StudentManagement.gRPC.AutoMap;
 using StudentManagement.NHibernate.DataAccess;
+using StudentManagement.NHibernate.IRepositories;
+using StudentManagement.NHibernate.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +15,39 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<NHibernateSessionManager>();
+
+// add NHibernate
+builder.Services.AddSingleton<NHibernateSessionManager>();
+// add ISessionFactory
+builder.Services.AddSingleton(provider =>
+{
+    var nhHelper = provider.GetRequiredService<NHibernateSessionManager>();
+    return nhHelper.GetSessionFactory();
+});
+
+// add ISession
+builder.Services.AddScoped(provider =>
+{
+    var sessionFactory = provider.GetRequiredService<ISessionFactory>();
+    return sessionFactory.OpenSession();
+});
+
+// add auto mapper
+builder.Services.AddAutoMapper(typeof(SinhVienMapping));
+
+// add repo
+builder.Services.AddScoped<ISinhVienRepository, SinhVienRepository>();
+
+// add service
+builder.Services.AddScoped<ISinhVienService, SinhVienService>();
+
+string grpcUrl = builder.Configuration.GetSection("gRPC")["Url"] ?? throw new InvalidOperationException("Bug url gRPC");
+
 builder.Services.AddGrpc();
 builder.Services.AddHttpClient("gRPC", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7067");
+    client.BaseAddress = new Uri(grpcUrl);
 });
-builder.Services.AddSingleton<GrpcServiceFactory>();
 
 var app = builder.Build();
 
@@ -30,7 +61,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGrpcService<TeacherServiceImpl>();
+// Map gRPC
+app.MapGrpcService<SinhVienService>();
 
 app.UseStaticFiles();
 
