@@ -37,9 +37,11 @@ builder.Services.AddAutoMapper(typeof(SinhVienMapping));
 
 // add repo
 builder.Services.AddScoped<ISinhVienRepository, SinhVienRepository>();
+builder.Services.AddScoped<ILopHocRepository, LopHocRepository>();
 
 // add service
 builder.Services.AddScoped<ISinhVienService, SinhVienService>();
+builder.Services.AddScoped<ILopHocService, LopHocService>();
 
 string grpcUrl = builder.Configuration.GetSection("gRPC")["Url"] ?? throw new InvalidOperationException("Bug url gRPC");
 

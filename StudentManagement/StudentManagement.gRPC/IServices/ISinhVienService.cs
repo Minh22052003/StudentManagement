@@ -1,5 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
-using StudentManagement.gRPC.DTOs.Student;
+using StudentManagement.gRPC.DTOs.SinhVien;
 using System.ServiceModel;
 
 

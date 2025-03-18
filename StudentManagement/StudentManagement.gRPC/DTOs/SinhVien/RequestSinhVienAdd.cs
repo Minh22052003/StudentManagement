@@ -1,11 +1,12 @@
-﻿using System;
+﻿using StudentManagement.gRPC.DTOs.Lop;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagement.gRPC.DTOs.Student
+namespace StudentManagement.gRPC.DTOs.SinhVien
 {
     [DataContract]
     public class RequestSinhVienAdd
@@ -25,7 +26,7 @@ namespace StudentManagement.gRPC.DTOs.Student
         [DataMember(Order = 5)]
         public int? MaLop { get; set; }
 
-        //[DataMember(Order = 6)]
-        //public ClassResponse ClassResponse { get; set; } = new ClassResponse();
+        [DataMember(Order = 6)]
+        public LopResponse LopResponse { get; set; } = new LopResponse();
     }
 }

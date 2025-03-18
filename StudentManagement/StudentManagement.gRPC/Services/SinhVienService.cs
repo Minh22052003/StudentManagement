@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using StudentManagement.gRPC.DTOs.Student;
+using StudentManagement.gRPC.DTOs.SinhVien;
 using StudentManagement.gRPC.IServices;
 using StudentManagement.NHibernate.IRepositories;
+using StudentManagement.NHibernate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,20 @@ namespace StudentManagement.gRPC.Services
             _studentRepository = studentRepository;
             _mapper = mapper;
         }
-        public Task AddSinhVienAsync(RequestSinhVienAdd request)
+        public async Task AddSinhVienAsync(RequestSinhVienAdd request)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                var student = _mapper.Map<SinhVien>(request);
+                var students = await _studentRepository.AddSinhVienAsync(student);
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex);
+                throw;
+            }
         }
 
         public Task DeleteSinhVienAsync(RequestSinhVien request)

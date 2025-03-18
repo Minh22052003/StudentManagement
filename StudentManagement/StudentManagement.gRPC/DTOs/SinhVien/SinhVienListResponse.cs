@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagement.gRPC.DTOs.Student
+namespace StudentManagement.gRPC.DTOs.SinhVien
 {
     [DataContract]
     public class SinhVienListResponse

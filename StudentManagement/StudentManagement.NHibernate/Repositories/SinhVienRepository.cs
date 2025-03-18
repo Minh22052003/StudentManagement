@@ -18,6 +18,7 @@ namespace StudentManagement.NHibernate.Repositories
             _session = session;
         }
 
+
         public async Task<List<SinhVien>> GetSinhVienListAsync()
         {
             var sinhviens = new List<SinhVien>();
@@ -32,6 +33,26 @@ namespace StudentManagement.NHibernate.Repositories
             }
             return sinhviens;
         }
+        public async Task<List<SinhVien>> AddSinhVienAsync(SinhVien sinhVien)
+        {
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+
+                await _session.SaveAsync(sinhVien);
+
+                await transaction.CommitAsync();
+
+                var sinhviens = await _session.Query<SinhVien>().ToListAsync();
+                return sinhviens;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi thêm sinh viên: " + ex.ToString());
+                throw;
+            }
+        }
+
 
         public async Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int pageNumber, int pageSize)
         {

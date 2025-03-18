@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using StudentManagement.gRPC.DTOs.Student;
+using StudentManagement.gRPC.DTOs.SinhVien;
 using StudentManagement.NHibernate.Models;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,10 @@
 ﻿@page "/list-sv"
+@using StudentManagement.gRPC.Services
 @inject StudentManagement.gRPC.IServices.ISinhVienService SinhVienService
+@inject StudentManagement.gRPC.IServices.ILopHocService LopHocService
 
 <h3>Danh sách sinh viên</h3>
-<button class="btn btn-primary mb-3" >Thêm sinh viên</button>
+<button class="btn btn-primary mb-3" @onclick="ShowAddForm">Thêm sinh viên</button>
 
 <table class="table">
     <thead>
@@ -33,13 +35,102 @@
     </tbody>
 </table>
 
+@if (showAddModal)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm Sinh Viên</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseAddForm"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="maSV" class="form-label">Mã sinh viên</label>
+                        <input id="maSV" class="form-control" @bind="newStudent.MaSV" type="number" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="tenSV" class="form-label">Họ và tên</label>
+                        <input id="tenSV" class="form-control" @bind="newStudent.TenSV" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="ngaySinh" class="form-label">Ngày sinh</label>
+                        <input id="ngaySinh" class="form-control" @bind="newStudent.NgaySinh" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="diaChi" class="form-label">Địa chỉ</label>
+                        <input id="diaChi" class="form-control" @bind="newStudent.DiaChi" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="maLop" class="form-label">Lớp học</label>
+                        <select id="maLop" class="form-select" @bind="newStudent.MaLop">
+                            <option value="">Chọn lớp</option>
+                            @foreach (var lop in classes.Lops)
+                            {
+                                <option value="@lop.MaLop">@lop.TenLop</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="CloseAddForm">Hủy</button>
+                    <button class="btn btn-primary" @onclick="AddStudent">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
 
 @code {
-    private StudentManagement.gRPC.DTOs.Student.SinhVienListResponse? sinhviens = new();
+    private StudentManagement.gRPC.DTOs.SinhVien.SinhVienListResponse? sinhviens = new();
+    private StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
+    private bool showAddModal = false;
+    private StudentManagement.gRPC.DTOs.Lop.LopListResponse classes = new();
 
     protected override async Task OnInitializedAsync()
     {
+        await LoadSinhViensAsync();
+        await LoadLopHocsAsync();
+    }
+
+    private async Task LoadSinhViensAsync()
+    {
         sinhviens = await SinhVienService.GetListSinhVienAsync();
+    }
+
+    private async Task LoadLopHocsAsync()
+    {
+        classes = await LopHocService.GetListLopAsync();
+    }
+
+    private void ShowAddForm()
+    {
+        newStudent = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd
+        {
+                LopResponse = new StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse().LopResponse
+        };
+        showAddModal = true;
+    }
+
+    private async Task AddStudent()
+    {
+        // var response = await SinhVienService.AddSinhVienAsync(newStudent);
+        // if (response.IsSuccess)
+        // {
+        //     showAddModal = false;
+        //     await LoadSinhViensAsync();
+        // }
+        // else
+        // {
+        //     Console.WriteLine("Thêm sinh viên thất bại: " + response.ErrorMessage);
+        // }
+    }
+
+    private void CloseAddForm()
+    {
+        showAddModal = false;
     }
 
     private void EditSinhVien(int maSV)
