@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HA39awte0k/bghG5373nd5H5+IQJSKCBfa528BJ3zLI=",
+  "Hash": "TVwuYtTdgenXOsCXyGZ58XzEot1Qy7rQPb0Smhi71r0=",
   "Source": "StudentManagement",
   "BasePath": "_content/StudentManagement",
   "Mode": "Default",
@@ -39322,7 +39322,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 07:08:15 GMT"
+          "Value": "Wed, 19 Mar 2025 16:31:52 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -39359,7 +39359,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 07:08:15 GMT"
+          "Value": "Wed, 19 Mar 2025 16:31:52 GMT"
         },
         {
           "Name": "Cache-Control",

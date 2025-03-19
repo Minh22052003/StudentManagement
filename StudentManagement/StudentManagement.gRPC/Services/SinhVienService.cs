@@ -33,7 +33,7 @@ namespace StudentManagement.gRPC.Services
                 student.MaLop = requestadd.MaLop;
                 student.LopHoc = await _lopHocRepository.GetLopHocById(student.MaLop);
                 var requestSV = new RequestSinhVien { MaSV = student.MaSV };
-                if (SearchBySinhVienIdAsync(requestSV).Result != null)
+                if (await SearchBySinhVienIdAsync(requestSV) != null)
                 {
                     return checkadd;
                 }

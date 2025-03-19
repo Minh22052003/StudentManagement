@@ -57,9 +57,7 @@ namespace StudentManagement.NHibernate.Repositories
         {
             try
             {
-                using var transaction = _session.BeginTransaction();
                 return _session.GetAsync<SinhVien>(id);
-
             }
             catch (Exception ex)
             {
