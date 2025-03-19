@@ -116,7 +116,6 @@
                     <div class="mb-3">
                         <label for="maLop" class="form-label">Lớp học</label>
                         <select id="maLop" class="form-select" @bind="sinhVienEdit.MaLop">
-                            <option value="">Chọn lớp</option>
                             @foreach (var lop in classes.Lops)
                             {
                                 <option value="@lop.MaLop">@lop.TenLop</option>

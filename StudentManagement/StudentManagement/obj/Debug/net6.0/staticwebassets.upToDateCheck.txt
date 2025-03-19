@@ -1,5 +1,6 @@
 wwwroot\css\bootstrap\bootstrap.min.css
 wwwroot\css\bootstrap\bootstrap.min.css.map
+wwwroot\css\gvmanagament.css
 wwwroot\css\open-iconic\font\css\open-iconic-bootstrap.min.css
 wwwroot\css\open-iconic\font\fonts\open-iconic.eot
 wwwroot\css\open-iconic\font\fonts\open-iconic.otf

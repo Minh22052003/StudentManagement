@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using StudentManagement.gRPC.DTOs.GiaoVien;
 using StudentManagement.gRPC.DTOs.Lop;
 using StudentManagement.gRPC.DTOs.SinhVien;
 using StudentManagement.gRPC.IServices;
 using StudentManagement.NHibernate.IRepositories;
+using StudentManagement.NHibernate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,30 @@ namespace StudentManagement.gRPC.Services
                 return null;
             }
         }
+
+        public async Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien)
+        {
+            try
+            {
+                List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(requestGiaoVien.MaGV);
+                List<LopReponseChart> lopResponses = new List<LopReponseChart>();
+
+                foreach (var lop in lophocs)
+                {
+                    var lopResponse = _mapper.Map<LopReponseChart>(lop);
+                    lopResponses.Add(lopResponse);
+                }
+
+                return lopResponses;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex.Message);
+                return null;
+            }
+        }
+
+
         async Task<LopResponse> ILopHocService.SearchByLopHocIdAsync(RequestLop requestLop)
         {
             try

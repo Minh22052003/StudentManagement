@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\gvmanagament.css",
+      "PackagePath": "staticwebassets\\css\\gvmanagament.css"
+    },
+    {
       "Id": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },

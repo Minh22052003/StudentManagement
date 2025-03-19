@@ -18,6 +18,19 @@ namespace StudentManagement.NHibernate.Repositories
             _session = session;
         }
 
+        public Task<List<LopHoc>> GetLopHocByGiaoVien(int MaGv)
+        {
+            try
+            {
+                return _session.Query<LopHoc>().Where(x => x.GiaoVien.MaGV == MaGv).ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex.ToString());
+                throw;
+            }
+        }
+
         public Task<LopHoc> GetLopHocById(int id)
         {
             try

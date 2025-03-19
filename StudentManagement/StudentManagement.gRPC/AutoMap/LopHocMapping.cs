@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.gRPC.AutoMap
 {
-    class LopHocMapping : Profile
+    public class LopHocMapping : Profile
     {
         public LopHocMapping()
         {
@@ -19,6 +19,12 @@ namespace StudentManagement.gRPC.AutoMap
 
             CreateMap<List<LopHoc>, LopListResponse>()
                 .ForMember(dest => dest.Lops, opt => opt.MapFrom(src => src));
+
+            CreateMap<LopHoc, LopReponseChart>()
+                .ForMember(dest => dest.giaovien, opt => opt.MapFrom(src => src.GiaoVien.TenGV))
+                .ForMember(dest => dest.tenlop, opt => opt.MapFrom(src => src.TenLop))
+                .ForMember(dest => dest.sohocsinh, opt => opt.MapFrom(src => src.SinhViens.Count()));
+
         }
     }
 }

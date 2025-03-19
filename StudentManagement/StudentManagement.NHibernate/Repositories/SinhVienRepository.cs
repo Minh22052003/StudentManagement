@@ -107,5 +107,10 @@ namespace StudentManagement.NHibernate.Repositories
         {
             return await _session.Query<SinhVien>().OrderBy(x => x.TenSV).ToListAsync();
         }
+
+        public async Task<List<SinhVien>> GetSinhVienListByLopHocAsync(int MaLop)
+        {
+            return await _session.Query<SinhVien>().Where(x=>x.MaLop == MaLop).ToListAsync();
+        }
     }
 }

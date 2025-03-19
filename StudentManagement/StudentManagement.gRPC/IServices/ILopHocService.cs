@@ -1,4 +1,5 @@
-﻿using StudentManagement.gRPC.DTOs.Lop;
+﻿using StudentManagement.gRPC.DTOs.GiaoVien;
+using StudentManagement.gRPC.DTOs.Lop;
 using StudentManagement.gRPC.DTOs.SinhVien;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,8 @@ namespace StudentManagement.gRPC.IServices
 
         [OperationContract]
         Task<LopResponse> SearchByLopHocIdAsync(RequestLop requestLop);
+
+        [OperationContract]
+        Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien);
     }
 }

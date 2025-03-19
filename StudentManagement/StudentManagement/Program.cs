@@ -34,14 +34,22 @@ builder.Services.AddScoped(provider =>
 
 // add auto mapper
 builder.Services.AddAutoMapper(typeof(SinhVienMapping));
+builder.Services.AddAutoMapper(typeof(LopHocMapping));
+builder.Services.AddAutoMapper(typeof(GiaoVienMapping));
 
 // add repo
 builder.Services.AddScoped<ISinhVienRepository, SinhVienRepository>();
 builder.Services.AddScoped<ILopHocRepository, LopHocRepository>();
+builder.Services.AddScoped<IGiaoVienRepository, GiaoVienRepository>();
 
 // add service
 builder.Services.AddScoped<ISinhVienService, SinhVienService>();
 builder.Services.AddScoped<ILopHocService, LopHocService>();
+builder.Services.AddScoped<IGiaoVienService, GiaoVienService>();
+builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
+
+// add AntDesign
+builder.Services.AddAntDesign();
 
 string grpcUrl = builder.Configuration.GetSection("gRPC")["Url"] ?? throw new InvalidOperationException("Bug url gRPC");
 
@@ -65,6 +73,8 @@ app.UseHttpsRedirection();
 
 // Map gRPC
 app.MapGrpcService<SinhVienService>();
+app.MapGrpcService<LopHocService>();
+app.MapGrpcService<GiaoVienService>();
 
 app.UseStaticFiles();
 

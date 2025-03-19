@@ -12,5 +12,7 @@ namespace StudentManagement.NHibernate.IRepositories
         Task<List<LopHoc>> GetLopHocListAsync();
 
         Task<LopHoc> GetLopHocById(int id);
+
+        Task<List<LopHoc>> GetLopHocByGiaoVien(int MaGV);
     }
 }

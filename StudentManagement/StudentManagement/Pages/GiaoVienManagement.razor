@@ -1,0 +1,38 @@
+﻿@page "/list-teacher"
+@using System.Globalization
+@using StudentManagement.gRPC.DTOs.GiaoVien
+
+<div style="display: flex; gap: 10px;">
+    <div style="flex: 7;">
+        @if (lopReponseCharts != null)
+        {
+            <Tabs>
+                <TabPane Key="1">
+                    <AntDesign.Charts.Column Data="lopReponseCharts" Config="config1" @key="lopReponseCharts" />
+                </TabPane>
+                <h3>Biểu đồ học sinh theo lớp</h3>
+                <Button Type="ButtonType.Primary" @onclick="() => ExcelExportAsync(lopReponseCharts)">Xuất Excel</Button>
+            </Tabs>
+        }
+        else
+        {
+            <h3>Đang tải biểu đồ</h3>
+        }
+    </div>
+
+    <div style="flex: 3;">
+        <h3>Giáo Viên</h3>
+        <Select TItem="GiaoVienSelect"
+                TItemValue="int"
+                DataSource="@giaoviens.GiaoVienSelects"
+                @bind-Value="@_selectedValue"
+                LabelName="@nameof(GiaoVienSelect.TenGV)"
+                ValueName="@nameof(GiaoVienSelect.MaGV)"
+                Placeholder="Chọn 1 giáo viên"
+                DefaultActiveFirstOption="false"
+                EnableSearch
+                OnSelectedItemChanged="OnSelectedItemChangedHandler"
+                FilterExpression="(item, searchValue) => CultureInfo.CurrentCulture.CompareInfo.IndexOf(item.Label, searchValue, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase) >= 0">
+        </Select>
+    </div>
+</div>
