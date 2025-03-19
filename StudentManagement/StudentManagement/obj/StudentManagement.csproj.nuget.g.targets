@@ -11,7 +11,5 @@
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.configuration.abstractions\9.0.3\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.configuration.abstractions\9.0.3\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Configuration.Abstractions.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.http\9.0.3\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Http.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.http\9.0.3\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Http.targets')" />
     <Import Project="$(NuGetPackageRoot)grpc.tools\2.71.0\build\Grpc.Tools.targets" Condition="Exists('$(NuGetPackageRoot)grpc.tools\2.71.0\build\Grpc.Tools.targets')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.components.analyzers\6.0.0\buildTransitive\netstandard2.0\Microsoft.AspNetCore.Components.Analyzers.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.components.analyzers\6.0.0\buildTransitive\netstandard2.0\Microsoft.AspNetCore.Components.Analyzers.targets')" />
-    <Import Project="$(NuGetPackageRoot)antdesign\1.2.1\build\AntDesign.targets" Condition="Exists('$(NuGetPackageRoot)antdesign\1.2.1\build\AntDesign.targets')" />
   </ImportGroup>
 </Project>

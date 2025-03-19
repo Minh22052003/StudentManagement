@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor",
               "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
               "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-03-19T04:26:17.578Z",
               "EditorCaption": ""
@@ -63,8 +63,7 @@
               "RelativeToolTip": "StudentManagement.NHibernate\\DataAccess\\NHibernateSessionManager.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T04:25:37.703Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:25:37.703Z"
             },
             {
               "$type": "Document",
@@ -76,8 +75,7 @@
               "RelativeToolTip": "StudentManagement.gRPC\\AutoMap\\SinhVienMapping.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T04:21:53.972Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:21:53.972Z"
             },
             {
               "$type": "Document",
@@ -89,8 +87,7 @@
               "RelativeToolTip": "StudentManagement\\Pages\\_Layout.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-19T04:12:39.526Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:12:39.526Z"
             },
             {
               "$type": "Document",
@@ -102,8 +99,7 @@
               "RelativeToolTip": "StudentManagement\\App.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-19T04:11:35.736Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:11:35.736Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "StudentManagement\\_Imports.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-19T04:11:07.599Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:11:07.599Z"
             },
             {
               "$type": "Document",
@@ -128,8 +123,7 @@
               "RelativeToolTip": "StudentManagement\\Program.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAACsAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T04:10:17.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T04:10:17.53Z"
             }
           ]
         }
