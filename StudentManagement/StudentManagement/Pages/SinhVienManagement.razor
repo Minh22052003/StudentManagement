@@ -2,6 +2,7 @@
 @using StudentManagement.gRPC.Services
 @inject StudentManagement.gRPC.IServices.ISinhVienService SinhVienService
 @inject StudentManagement.gRPC.IServices.ILopHocService LopHocService
+@inject IJSRuntime JS
 
 <h3>Danh sách sinh viên</h3>
 <button class="btn btn-primary mb-3" @onclick="ShowAddForm">Thêm sinh viên</button>
@@ -27,8 +28,8 @@
                 <td>@sinhvien.DiaChi</td>
                 <td>@sinhvien.MaLop</td>
                 <td>
-                    <button class="btn btn-primary" @onclick="() => EditSinhVien(sinhvien.MaSV)">Edit</button>
-                    <button class="btn btn-danger" @onclick="() => DeleteSinhVien(sinhvien.MaSV)">Delete</button>
+                    <button class="btn btn-primary" @onclick="() => ShowEditForm(sinhvien.MaSV)">Edit</button>
+                    <button class="btn btn-danger" @onclick="() => ShowDeleteForm(sinhvien.MaSV)">Delete</button>
                 </td>
             </tr>
         }
@@ -64,7 +65,6 @@
                     <div class="mb-3">
                         <label for="maLop" class="form-label">Lớp học</label>
                         <select id="maLop" class="form-select" @bind="newStudent.MaLop">
-                            <option value="">Chọn lớp</option>
                             @foreach (var lop in classes.Lops)
                             {
                                 <option value="@lop.MaLop">@lop.TenLop</option>
@@ -74,7 +74,97 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" @onclick="CloseAddForm">Hủy</button>
-                    <button class="btn btn-primary" @onclick="AddStudent">Lưu</button>
+                    <button class="btn btn-primary" @onclick="AddSinhVien">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@if (showEditModal)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh Sửa Sinh Viên</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseEditForm"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="maSV" class="form-label">Mã sinh viên</label>
+                        <input id="maSV" class="form-control" @bind="sinhVienEdit.MaSV" type="number" disabled />
+                    </div>
+                    <div class="mb-3">
+                        <label for="tenSV" class="form-label">Họ và tên</label>
+                        <input id="tenSV" class="form-control" @bind="sinhVienEdit.TenSV" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="ngaySinh" class="form-label">Ngày sinh</label>
+                        <input id="ngaySinh" class="form-control" @bind="sinhVienEdit.NgaySinh" type="date" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="diaChi" class="form-label">Địa chỉ</label>
+                        <input id="diaChi" class="form-control" @bind="sinhVienEdit.DiaChi" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="maLop" class="form-label">Lớp học</label>
+                        <select id="maLop" class="form-select" @bind="sinhVienEdit.MaLop">
+                            <option value="">Chọn lớp</option>
+                            @foreach (var lop in classes.Lops)
+                            {
+                                <option value="@lop.MaLop">@lop.TenLop</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="CloseEditForm">Hủy</button>
+                    <button class="btn btn-primary" @onclick="UpdateSinhVien">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@if (showDeleteModal)
+{
+    <div class="modal show d-block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Xác nhận xóa sinh viên</h5>
+                    <button type="button" class="btn-close" aria-label="Close" @onclick="CloseDeleteForm"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-danger fw-bold">Bạn có chắc chắn muốn xóa sinh viên này không?</p>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Mã sinh viên:</label>
+                        <p>@sinhVienDelete.MaSV</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Họ và tên:</label>
+                        <p>@sinhVienDelete.TenSV</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Ngày sinh:</label>
+                        <p>@sinhVienDelete.NgaySinh?.ToString("dd/MM/yyyy")</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Địa chỉ:</label>
+                        <p>@sinhVienDelete.DiaChi</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Lớp học:</label>
+                        <p>@sinhVienDelete.MaLop</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" @onclick="CloseDeleteForm">Hủy</button>
+                    <button class="btn btn-danger" @onclick="DeleteSinhVien">Xóa</button>
                 </div>
             </div>
         </div>
@@ -83,10 +173,17 @@
 }
 
 
+
+
+
 @code {
     private StudentManagement.gRPC.DTOs.SinhVien.SinhVienListResponse? sinhviens = new();
     private StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
+    private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienEdit = new();
+    private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienDelete = new();
     private bool showAddModal = false;
+    private bool showEditModal = false;
+    private bool showDeleteModal = false;
     private StudentManagement.gRPC.DTOs.Lop.LopListResponse classes = new();
 
     protected override async Task OnInitializedAsync()
@@ -107,25 +204,30 @@
 
     private void ShowAddForm()
     {
-        newStudent = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd
-        {
-                LopResponse = new StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse().LopResponse
-        };
+        newStudent = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd();
         showAddModal = true;
     }
 
-    private async Task AddStudent()
+    private async Task AddSinhVien()
     {
-        // var response = await SinhVienService.AddSinhVienAsync(newStudent);
-        // if (response.IsSuccess)
-        // {
-        //     showAddModal = false;
-        //     await LoadSinhViensAsync();
-        // }
-        // else
-        // {
-        //     Console.WriteLine("Thêm sinh viên thất bại: " + response.ErrorMessage);
-        // }
+        if (string.IsNullOrWhiteSpace(newStudent.TenSV) ||
+        newStudent.NgaySinh == default ||
+        string.IsNullOrWhiteSpace(newStudent.DiaChi))
+        {
+            await JS.InvokeVoidAsync("alert", "Vui lòng nhập đầy đủ thông tin sinh viên!");
+            return;
+        }
+        var response = await SinhVienService.AddSinhVienAsync(newStudent);
+        if (response == true)
+        {
+            showAddModal = false;
+            await LoadSinhViensAsync();
+            await JS.InvokeVoidAsync("alert", "Thêm sinh viên thành công!");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Thêm sinh viên thất bại!");
+        }
     }
 
     private void CloseAddForm()
@@ -133,24 +235,68 @@
         showAddModal = false;
     }
 
-    private void EditSinhVien(int maSV)
+    private async Task ShowEditForm(int masv)
     {
-        // NavigationManager.NavigateTo($"/edit-sv/{maSV}");
+        var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+        sinhVienEdit = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
+        showEditModal = true;
     }
 
-    private async Task DeleteSinhVien(int maSV)
+    private async Task UpdateSinhVien()
     {
-        // var request = new StudentManagement.gRPC.DTOs.Student.RequestSinhVien { MaSV = maSV };
-        // var response = await SinhVienService.DeleteSinhVienAsync(request);
+        if (string.IsNullOrWhiteSpace(sinhVienEdit.TenSV) ||
+        sinhVienEdit.NgaySinh == default ||
+        string.IsNullOrWhiteSpace(sinhVienEdit.DiaChi))
+        {
+            await JS.InvokeVoidAsync("alert", "Vui lòng nhập đầy đủ thông tin sinh viên!");
+            return;
+        }
+        var response = await SinhVienService.UpdateSinhVienAsync(sinhVienEdit);
+        if (response == true)
+        {
+            showAddModal = false;
+            await LoadSinhViensAsync();
+            await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thành công!");
+            CloseEditForm();
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thất bại!");
+        }
+    }
 
-        // if (response.IsSuccess)
-        // {
-        //     await LoadSinhViensAsync();
-        // }
-        // else
-        // {
-        //     Console.WriteLine("Xóa sinh viên thất bại: " + response.ErrorMessage);
-        // }
+    private void CloseEditForm()
+    {
+        showEditModal = false;
+    }
+
+    private async Task ShowDeleteForm(int masv)
+    {
+        var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+        sinhVienDelete = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
+        showDeleteModal = true;
+    }
+
+    private async Task DeleteSinhVien()
+    {
+        var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = sinhVienDelete.MaSV };
+        var response = await SinhVienService.DeleteSinhVienAsync(requestsv);
+        if (response == true)
+        {
+            showAddModal = false;
+            await LoadSinhViensAsync();
+            await JS.InvokeVoidAsync("alert", "Xóa sinh viên thành công!");
+            CloseDeleteForm();
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Xóa sinh viên thất bại!");
+        }
+    }
+
+    private void CloseDeleteForm()
+    {
+        showDeleteModal = false;
     }
 
 }

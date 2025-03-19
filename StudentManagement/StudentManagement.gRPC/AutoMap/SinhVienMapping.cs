@@ -14,12 +14,14 @@ namespace StudentManagement.gRPC.AutoMap
         public SinhVienMapping()
         {
             CreateMap<SinhVien, SinhVienResponse>()
-                .ForMember(dest => dest.NgaySinh, opt => opt.MapFrom(src =>
-                    src.NgaySinh.HasValue ? src.NgaySinh.Value.ToString("yyyy-MM-dd") : string.Empty))
                 .ForMember(dest => dest.MaLop, opt => opt.MapFrom(src => src.LopHoc.MaLop));
 
             CreateMap<List<SinhVien>, SinhVienListResponse>()
                 .ForMember(dest => dest.SinhViens, opt => opt.MapFrom(src => src));
+
+            CreateMap<SinhVienResponse, SinhVien>();
+
+            CreateMap<RequestSinhVienAdd, SinhVien>();
         }
         
     }

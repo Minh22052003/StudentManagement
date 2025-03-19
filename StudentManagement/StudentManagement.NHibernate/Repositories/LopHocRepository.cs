@@ -18,6 +18,19 @@ namespace StudentManagement.NHibernate.Repositories
             _session = session;
         }
 
+        public Task<LopHoc> GetLopHocById(int id)
+        {
+            try
+            {
+                return _session.GetAsync<LopHoc>(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex.ToString());
+                throw;
+            }
+        }
+
         public async Task<List<LopHoc>> GetLopHocListAsync()
         {
             var lophocs = new List<LopHoc>();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StudentManagement.gRPC.DTOs.Lop
 {
     [DataContract]
-    class RequestLop
+    public class RequestLop
     {
         [DataMember(Order = 1)]
         public int MaLop { get; set; }

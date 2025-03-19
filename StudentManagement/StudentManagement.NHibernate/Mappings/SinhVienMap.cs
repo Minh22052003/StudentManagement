@@ -14,16 +14,12 @@ namespace StudentManagement.NHibernate.Mappings
         public SinhVienMap()
         {
             Table("SinhVien");
-            Id(x=>x.MaSV)
-                .Column("MaSV")
-                .CustomSqlType("int")
-                .GeneratedBy.Identity();
+            Id(x => x.MaSV).GeneratedBy.Assigned();
             Map(x => x.TenSV);
             Map(x => x.NgaySinh);
             Map(x => x.DiaChi);
             References(x => x.LopHoc)
-                .Column("MaLop")
-                .Cascade.None();
+                .Column("MaLop").Not.Nullable();
         }
     }
 }

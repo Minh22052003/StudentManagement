@@ -36,5 +36,19 @@ namespace StudentManagement.gRPC.Services
                 return null;
             }
         }
+        async Task<LopResponse> ILopHocService.SearchByLopHocIdAsync(RequestLop requestLop)
+        {
+            try
+            {
+                var lopHoc = await _lopHocRepository.GetLopHocById(requestLop.MaLop);
+                var lopHocResponse = _mapper.Map<LopResponse>(lopHoc);
+                return lopHocResponse;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi " + ex);
+                return null;
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace StudentManagement.NHibernate.Models
 
         public virtual string DiaChi { get; set; }
 
-        public virtual int? MaLop { get; set; }
+        public virtual int MaLop { get; set; }
 
         public virtual LopHoc LopHoc { get; set; }
     }

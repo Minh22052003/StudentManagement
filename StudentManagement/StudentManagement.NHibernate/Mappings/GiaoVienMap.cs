@@ -16,8 +16,7 @@ namespace StudentManagement.NHibernate.Mappings
             Table("GiaoVien");
             Id(x=>x.MaGV)
                 .Column("MaGV")
-                .CustomSqlType("int")
-                .GeneratedBy.Identity();
+                .CustomSqlType("int");
             Map(x => x.TenGV);
             Map(x => x.NgaySinh);
             HasMany(x => x.LopHocs)

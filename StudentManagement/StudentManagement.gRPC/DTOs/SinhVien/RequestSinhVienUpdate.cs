@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace StudentManagement.gRPC.DTOs.SinhVien
 {
     [DataContract]
-    public class RequestSinhVienAdd
+    public class RequestSinhVienUpdate
     {
         [DataMember(Order = 1)]
         public int MaSV { get; set; }

@@ -1,4 +1,5 @@
 ﻿using StudentManagement.gRPC.DTOs.Lop;
+using StudentManagement.NHibernate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,15 @@ namespace StudentManagement.gRPC.DTOs.SinhVien
         public string TenSV { get; set; } = string.Empty;
 
         [DataMember(Order = 3)]
-        public string NgaySinh { get; set; } = string.Empty;
+        public DateTime? NgaySinh { get; set; }
 
         [DataMember(Order = 4)]
         public string DiaChi { get; set; } = string.Empty;
 
         [DataMember(Order = 5)]
-        public int? MaLop { get; set; }
+        public int MaLop { get; set; }
 
         [DataMember(Order = 6)]
-        public LopResponse LopResponse { get; set; } = new LopResponse();
+        public LopHoc LopHoc { get; set; } = new LopHoc();
     }
 }

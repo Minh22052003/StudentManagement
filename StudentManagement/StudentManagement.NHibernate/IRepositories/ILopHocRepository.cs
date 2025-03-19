@@ -10,5 +10,7 @@ namespace StudentManagement.NHibernate.IRepositories
     public interface ILopHocRepository : IRepository<LopHoc>
     {
         Task<List<LopHoc>> GetLopHocListAsync();
+
+        Task<LopHoc> GetLopHocById(int id);
     }
 }

@@ -17,8 +17,7 @@ namespace StudentManagement.NHibernate.Mappings
 
             Id(x => x.MaLop)
                 .Column("MaLop")
-                .CustomSqlType("int")
-                .GeneratedBy.Identity();
+                .CustomSqlType("int");
 
             Map(x => x.TenLop).Column("TenLop");
             Map(x => x.MonHoc).Column("MonHoc");

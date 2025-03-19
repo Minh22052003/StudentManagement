@@ -33,7 +33,7 @@ namespace StudentManagement.NHibernate.Repositories
             }
             return sinhviens;
         }
-        public async Task<List<SinhVien>> AddSinhVienAsync(SinhVien sinhVien)
+        public async Task<SinhVien> AddSinhVienAsync(SinhVien sinhVien)
         {
             try
             {
@@ -43,12 +43,10 @@ namespace StudentManagement.NHibernate.Repositories
 
                 await transaction.CommitAsync();
 
-                var sinhviens = await _session.Query<SinhVien>().ToListAsync();
-                return sinhviens;
+                return sinhVien;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khi thêm sinh viên: " + ex.ToString());
                 throw;
             }
         }
@@ -57,6 +55,56 @@ namespace StudentManagement.NHibernate.Repositories
         public async Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int pageNumber, int pageSize)
         {
             return await _session.Query<SinhVien>().OrderBy(x => x.TenSV).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public Task<SinhVien> GetSinhVienByIDAsync(int id)
+        {
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+                return _session.GetAsync<SinhVien>(id);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<SinhVien> UpdateSinhVienAsync(SinhVien sinhVien)
+        {
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+                await _session.UpdateAsync(sinhVien);
+                await transaction.CommitAsync();
+                return sinhVien;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex.ToString());
+                throw;
+            }
+
+        }
+
+        public async Task<bool> DeleteSinhVienAsync(SinhVien sinhVien)
+        {
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+
+                await _session.DeleteAsync(sinhVien);
+
+                await transaction.CommitAsync();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

@@ -14,5 +14,8 @@ namespace StudentManagement.gRPC.IServices
     {
         [OperationContract]
         Task<LopListResponse> GetListLopAsync();
+
+        [OperationContract]
+        Task<LopResponse> SearchByLopHocIdAsync(RequestLop requestLop);
     }
 }

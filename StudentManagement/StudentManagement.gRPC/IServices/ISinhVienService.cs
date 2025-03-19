@@ -12,13 +12,13 @@ namespace StudentManagement.gRPC.IServices
         Task<SinhVienListResponse> GetListSinhVienAsync();
 
         [OperationContract]
-        Task AddSinhVienAsync(RequestSinhVienAdd request);
+        Task<bool> AddSinhVienAsync(RequestSinhVienAdd request);
 
         [OperationContract]
-        Task UpdateSinhVienAsync(RequestSinhVienAdd request);
+        Task<bool> UpdateSinhVienAsync(SinhVienResponse request);
 
         [OperationContract]
-        Task DeleteSinhVienAsync(RequestSinhVien request);
+        Task<bool> DeleteSinhVienAsync(RequestSinhVien request);
 
         [OperationContract]
         Task<SinhVienListResponse> SortSinhVienListByNameAsync();
