@@ -271,6 +271,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AntDesign": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
             "Google.Protobuf": {
               "target": "Package",
               "version": "[3.30.1, )"
