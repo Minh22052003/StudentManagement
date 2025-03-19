@@ -6,6 +6,11 @@
 
 <h3>Danh sách sinh viên</h3>
 <button class="btn btn-primary mb-3" @onclick="ShowAddForm">Thêm sinh viên</button>
+<button class="btn btn-primary mb-3" @onclick="LoadSinhViensSortByNameAsync">Sắp xếp theo tên</button>
+<div class="mb-3">
+    <label for="searchMaSV" class="form-label">Tìm kiếm theo mã sinh viên</label>
+    <input id="searchMaSV" class="form-control" @bind="searchMaSV" @bind:event="oninput" @onchange="SearchStudent" placeholder="Nhập mã sinh viên..." />
+</div>
 
 <table class="table">
     <thead>
@@ -181,10 +186,11 @@
     private StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
     private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienEdit = new();
     private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienDelete = new();
+    private StudentManagement.gRPC.DTOs.Lop.LopListResponse classes = new();
     private bool showAddModal = false;
     private bool showEditModal = false;
     private bool showDeleteModal = false;
-    private StudentManagement.gRPC.DTOs.Lop.LopListResponse classes = new();
+    private string searchMaSV = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -192,22 +198,30 @@
         await LoadLopHocsAsync();
     }
 
+    // default
     private async Task LoadSinhViensAsync()
     {
         sinhviens = await SinhVienService.GetListSinhVienAsync();
     }
 
+    // sort by name
+    private async Task LoadSinhViensSortByNameAsync()
+    {
+        sinhviens = await SinhVienService.SortSinhVienListByNameAsync();
+    }
+
+    // load item class in add and update form
     private async Task LoadLopHocsAsync()
     {
         classes = await LopHocService.GetListLopAsync();
     }
 
+    // add
     private void ShowAddForm()
     {
         newStudent = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd();
         showAddModal = true;
     }
-
     private async Task AddSinhVien()
     {
         if (string.IsNullOrWhiteSpace(newStudent.TenSV) ||
@@ -229,19 +243,18 @@
             await JS.InvokeVoidAsync("alert", "Thêm sinh viên thất bại!");
         }
     }
-
     private void CloseAddForm()
     {
         showAddModal = false;
     }
 
+    // edit
     private async Task ShowEditForm(int masv)
     {
         var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
         sinhVienEdit = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
         showEditModal = true;
     }
-
     private async Task UpdateSinhVien()
     {
         if (string.IsNullOrWhiteSpace(sinhVienEdit.TenSV) ||
@@ -264,19 +277,18 @@
             await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thất bại!");
         }
     }
-
     private void CloseEditForm()
     {
         showEditModal = false;
     }
 
+    // delete
     private async Task ShowDeleteForm(int masv)
     {
         var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
         sinhVienDelete = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
         showDeleteModal = true;
     }
-
     private async Task DeleteSinhVien()
     {
         var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = sinhVienDelete.MaSV };
@@ -293,10 +305,32 @@
             await JS.InvokeVoidAsync("alert", "Xóa sinh viên thất bại!");
         }
     }
-
     private void CloseDeleteForm()
     {
         showDeleteModal = false;
+    }
+
+    //search
+    private async Task SearchStudent()
+    {
+        if (!string.IsNullOrWhiteSpace(searchMaSV))
+        {
+            var svrequest = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = int.Parse(searchMaSV) };
+
+            var sinhvien= await SinhVienService.SearchBySinhVienIdAsync(svrequest);
+            if (sinhvien == null)
+            {
+                await JS.InvokeVoidAsync("alert", "Không tìm thấy sinh viên!");
+                return;
+            }
+            sinhviens.SinhViens.Clear();
+            sinhviens.SinhViens.Add(sinhvien);
+
+        }
+        else
+        {
+            await LoadSinhViensAsync();
+        }
     }
 
 }

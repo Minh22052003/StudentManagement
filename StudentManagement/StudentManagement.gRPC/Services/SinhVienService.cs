@@ -114,11 +114,6 @@ namespace StudentManagement.gRPC.Services
             try
             {
                 var students = await _studentRepository.GetSinhVienListAsync();
-                foreach (var student in students)
-                {
-                    Console.WriteLine("Student: " + student.TenSV);
-                    Console.WriteLine("lop: " + student.LopHoc.MaLop);
-                }
                 var studentsResponse = _mapper.Map<SinhVienListResponse>(students);
                 return studentsResponse;
             }
@@ -145,12 +140,21 @@ namespace StudentManagement.gRPC.Services
             }
         }
 
-        public Task<SinhVienListResponse> SortSinhVienListByNameAsync()
+        public async Task<SinhVienListResponse> SortSinhVienListByNameAsync()
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var students = await _studentRepository.GetSinhVienListSortByNameAsync();
+                var studentsResponse = _mapper.Map<SinhVienListResponse>(students);
+                return (studentsResponse);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Loi: " + ex);
+                return null;
+            }
 
-        
+        }
         
     }
 }

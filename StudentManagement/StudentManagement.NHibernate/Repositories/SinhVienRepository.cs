@@ -52,10 +52,6 @@ namespace StudentManagement.NHibernate.Repositories
         }
 
 
-        public async Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int pageNumber, int pageSize)
-        {
-            return await _session.Query<SinhVien>().OrderBy(x => x.TenSV).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
-        }
 
         public Task<SinhVien> GetSinhVienByIDAsync(int id)
         {
@@ -105,6 +101,11 @@ namespace StudentManagement.NHibernate.Repositories
             {
                 return false;
             }
+        }
+
+        public async Task<List<SinhVien>> GetSinhVienListSortByNameAsync()
+        {
+            return await _session.Query<SinhVien>().OrderBy(x => x.TenSV).ToListAsync();
         }
     }
 }
