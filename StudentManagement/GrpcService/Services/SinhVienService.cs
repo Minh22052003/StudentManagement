@@ -118,7 +118,6 @@ namespace GrpcService.Services
             }
             catch(Exception ex)
             {
-                Console.WriteLine("Loi "+ ex);
                 return null;
             }
         }
