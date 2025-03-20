@@ -1,9 +1,9 @@
 ﻿using AntDesign.Charts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using StudentManagement.gRPC.DTOs.GiaoVien;
-using StudentManagement.gRPC.DTOs.Lop;
-using StudentManagement.gRPC.IServices;
+using Share.DTOs.GiaoVien;
+using Share.DTOs.Lop;
+using Share.IServices;
 
 
 namespace StudentManagement.Pages
@@ -71,7 +71,7 @@ namespace StudentManagement.Pages
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = $"GiaoVien_{timestamp}.xlsx";
                 var checkExport = _excelExportService.ExportToExcel(lopReponseCharts, "Main", fileName);
-                if(checkExport == false)
+                if(checkExport.Success == false)
                 {
                     await JS.InvokeVoidAsync("alert", "Xuất file Excle không thành công!");
                 }

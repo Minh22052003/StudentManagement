@@ -1,27 +1,26 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using StudentManagement.gRPC.Services;
-using System;
+using Share.IServices;
 
 namespace StudentManagement.Pages
 {
     public partial class SinhVienManagement : ComponentBase
     {
-        private StudentManagement.gRPC.DTOs.SinhVien.SinhVienListResponse? sinhviens = new();
-        private StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
-        private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienEdit = new();
-        private StudentManagement.gRPC.DTOs.SinhVien.SinhVienResponse sinhVienDelete = new();
-        private StudentManagement.gRPC.DTOs.Lop.LopListResponse classes = new();
+        private Share.DTOs.SinhVien.SinhVienListResponse? sinhviens = new();
+        private Share.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
+        private Share.DTOs.SinhVien.SinhVienResponse sinhVienEdit = new();
+        private Share.DTOs.SinhVien.SinhVienResponse sinhVienDelete = new();
+        private Share.DTOs.Lop.LopListResponse classes = new();
         private bool showAddModal = false;
         private bool showEditModal = false;
         private bool showDeleteModal = false;
         private string searchMaSV = "";
 
         [Inject]
-        StudentManagement.gRPC.IServices.ISinhVienService SinhVienService { get; set; }
+        ISinhVienService SinhVienService { get; set; }
 
         [Inject]
-        StudentManagement.gRPC.IServices.ILopHocService LopHocService { get; set; }
+        ILopHocService LopHocService { get; set; }
 
         [Inject]
         IJSRuntime JS { get; set; }
@@ -53,7 +52,7 @@ namespace StudentManagement.Pages
         // add
         private void ShowAddForm()
         {
-            newStudent = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVienAdd();
+            newStudent = new Share.DTOs.SinhVien.RequestSinhVienAdd();
             showAddModal = true;
         }
         private async Task AddSinhVien()
@@ -66,7 +65,7 @@ namespace StudentManagement.Pages
                 return;
             }
             var response = await SinhVienService.AddSinhVienAsync(newStudent);
-            if (response == true)
+            if (response.Success == true)
             {
                 showAddModal = false;
                 await JS.InvokeVoidAsync("alert", "Thêm sinh viên thành công!");
@@ -85,7 +84,7 @@ namespace StudentManagement.Pages
         // edit
         private async Task ShowEditForm(int masv)
         {
-            var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
             sinhVienEdit = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
             showEditModal = true;
         }
@@ -99,7 +98,7 @@ namespace StudentManagement.Pages
                 return;
             }
             var response = await SinhVienService.UpdateSinhVienAsync(sinhVienEdit);
-            if (response == true)
+            if (response.Success == true)
             {
                 showAddModal = false;
                 await LoadSinhViensAsync();
@@ -119,15 +118,15 @@ namespace StudentManagement.Pages
         // delete
         private async Task ShowDeleteForm(int masv)
         {
-            var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
             sinhVienDelete = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
             showDeleteModal = true;
         }
         private async Task DeleteSinhVien()
         {
-            var requestsv = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = sinhVienDelete.MaSV };
+            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = sinhVienDelete.MaSV };
             var response = await SinhVienService.DeleteSinhVienAsync(requestsv);
-            if (response == true)
+            if (response.Success == true)
             {
                 showAddModal = false;
                 await LoadSinhViensAsync();
@@ -149,7 +148,7 @@ namespace StudentManagement.Pages
         {
             if (!string.IsNullOrWhiteSpace(searchMaSV))
             {
-                var svrequest = new StudentManagement.gRPC.DTOs.SinhVien.RequestSinhVien { MaSV = int.Parse(searchMaSV) };
+                var svrequest = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = int.Parse(searchMaSV) };
 
                 var sinhvien = await SinhVienService.SearchBySinhVienIdAsync(svrequest);
                 if (sinhvien == null)
@@ -157,6 +156,7 @@ namespace StudentManagement.Pages
                     await JS.InvokeVoidAsync("alert", "Không tìm thấy sinh viên!");
                     return;
                 }
+
                 sinhviens.SinhViens.Clear();
                 sinhviens.SinhViens.Add(sinhvien);
 

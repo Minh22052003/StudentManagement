@@ -1,13 +1,7 @@
-﻿using StudentManagement.gRPC.DTOs.Lop;
-using StudentManagement.NHibernate.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Share.DTOs.Lop;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace StudentManagement.gRPC.DTOs.SinhVien
+namespace Share.DTOs.SinhVien
 {
     [DataContract]
     public class RequestSinhVienUpdate
@@ -28,6 +22,6 @@ namespace StudentManagement.gRPC.DTOs.SinhVien
         public int MaLop { get; set; }
 
         [DataMember(Order = 6)]
-        public LopHoc LopHoc { get; set; } = new LopHoc();
+        public LopResponse LopResponse { get; set; } = new LopResponse();
     }
 }

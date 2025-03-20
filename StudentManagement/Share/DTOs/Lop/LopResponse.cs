@@ -1,13 +1,7 @@
-﻿using StudentManagement.gRPC.DTOs.GiaoVien;
-using StudentManagement.NHibernate.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Share.DTOs.GiaoVien;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace StudentManagement.gRPC.DTOs.Lop
+namespace Share.DTOs.Lop
 {
     [DataContract]
     public class LopResponse

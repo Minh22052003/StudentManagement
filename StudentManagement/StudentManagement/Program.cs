@@ -1,63 +1,47 @@
-using NHibernate;
-using StudentManagement.Data;
-using StudentManagement.gRPC.IServices;
-using StudentManagement.gRPC.Services;
-using StudentManagement.gRPC.AutoMap;
-using StudentManagement.NHibernate.DataAccess;
-using StudentManagement.NHibernate.IRepositories;
-using StudentManagement.NHibernate.Repositories;
+using Grpc.Net.Client;
+using ProtoBuf.Grpc.Client;
+using Share.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddHttpContextAccessor();
-
-// add NHibernate
-builder.Services.AddSingleton<NHibernateSessionManager>();
-// add ISessionFactory
-builder.Services.AddSingleton(provider =>
-{
-    var nhHelper = provider.GetRequiredService<NHibernateSessionManager>();
-    return nhHelper.GetSessionFactory();
-});
-
-// add ISession
-builder.Services.AddScoped(provider =>
-{
-    var sessionFactory = provider.GetRequiredService<ISessionFactory>();
-    return sessionFactory.OpenSession();
-});
-
-// add auto mapper
-builder.Services.AddAutoMapper(typeof(SinhVienMapping));
-builder.Services.AddAutoMapper(typeof(LopHocMapping));
-builder.Services.AddAutoMapper(typeof(GiaoVienMapping));
-
-// add repo
-builder.Services.AddScoped<ISinhVienRepository, SinhVienRepository>();
-builder.Services.AddScoped<ILopHocRepository, LopHocRepository>();
-builder.Services.AddScoped<IGiaoVienRepository, GiaoVienRepository>();
-
-// add service
-builder.Services.AddScoped<ISinhVienService, SinhVienService>();
-builder.Services.AddScoped<ILopHocService, LopHocService>();
-builder.Services.AddScoped<IGiaoVienService, GiaoVienService>();
-builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
 
 // add AntDesign
 builder.Services.AddAntDesign();
 
 string grpcUrl = builder.Configuration.GetSection("gRPC")["Url"] ?? throw new InvalidOperationException("Bug url gRPC");
-
-builder.Services.AddGrpc();
+// Configure HttpClient for gRPC
 builder.Services.AddHttpClient("gRPC", client =>
 {
     client.BaseAddress = new Uri(grpcUrl);
+}).ConfigurePrimaryHttpMessageHandler(() =>
+    new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    });
+
+// Create GrpcChannel using HttpClientFactory
+builder.Services.AddSingleton(serviceProvider =>
+{
+    var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
+    var httpClient = httpClientFactory.CreateClient("gRPC");
+    return GrpcChannel.ForAddress(grpcUrl, new GrpcChannelOptions { HttpClient = httpClient });
 });
+
+// Register gRPC services
+builder.Services.AddSingleton<ISinhVienService>(serviceProvider =>
+    serviceProvider.GetRequiredService<GrpcChannel>().CreateGrpcService<ISinhVienService>());
+builder.Services.AddSingleton<IGiaoVienService>(serviceProvider =>
+    serviceProvider.GetRequiredService<GrpcChannel>().CreateGrpcService<IGiaoVienService>());
+builder.Services.AddSingleton<ILopHocService>(serviceProvider =>
+    serviceProvider.GetRequiredService<GrpcChannel>().CreateGrpcService<ILopHocService>());
+builder.Services.AddSingleton<IExcelExportService>(serviceProvider =>
+    serviceProvider.GetRequiredService<GrpcChannel>().CreateGrpcService<IExcelExportService>());
+
 
 var app = builder.Build();
 
@@ -71,10 +55,6 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Map gRPC
-app.MapGrpcService<SinhVienService>();
-app.MapGrpcService<LopHocService>();
-app.MapGrpcService<GiaoVienService>();
 
 app.UseStaticFiles();
 

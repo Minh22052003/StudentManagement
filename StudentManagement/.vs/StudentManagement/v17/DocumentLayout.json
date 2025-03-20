@@ -3,32 +3,72 @@
   "WorkspaceRootPath": "D:\\SOFTDREAM\\source\\StudentManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\sinhvienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\sinhvienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1E948232-CC7A-441E-8A26-61958BB408DB}|StudentManagement.gRPC\\StudentManagement.gRPC.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement.grpc\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1E948232-CC7A-441E-8A26-61958BB408DB}|StudentManagement.gRPC\\StudentManagement.gRPC.csproj|solutionrelative:studentmanagement.grpc\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{086D686D-2A06-433E-BE8D-16257D403F56}|StudentManagement.NHibernate\\StudentManagement.NHibernate.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement.nhibernate\\repositories\\sinhvienrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{086D686D-2A06-433E-BE8D-16257D403F56}|StudentManagement.NHibernate\\StudentManagement.NHibernate.csproj|solutionrelative:studentmanagement.nhibernate\\repositories\\sinhvienrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\iservices\\isinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\iservices\\isinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\services\\excelexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\services\\excelexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\iservices\\iexcelexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\iservices\\iexcelexportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\dtos\\sinhvien\\requestsinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\dtos\\sinhvien\\requestsinhvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\iservices\\ilophocservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\iservices\\ilophocservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\iservices\\igiaovienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\iservices\\igiaovienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\services\\lophocservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\services\\lophocservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\services\\giaovienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\services\\giaovienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\dtos\\giaovien\\giaovienlistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\dtos\\giaovien\\giaovienlistresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\automap\\sinhvienmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\automap\\sinhvienmapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,81 +78,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 259,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Program.cs",
-              "RelativeDocumentMoniker": "StudentManagement\\Program.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Program.cs",
-              "RelativeToolTip": "StudentManagement\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "RequestSinhVien.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\SinhVien\\RequestSinhVien.cs",
+              "RelativeDocumentMoniker": "Share\\DTOs\\SinhVien\\RequestSinhVien.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\SinhVien\\RequestSinhVien.cs",
+              "RelativeToolTip": "Share\\DTOs\\SinhVien\\RequestSinhVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T01:03:50.306Z",
+              "WhenOpened": "2025-03-20T05:00:38.986Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SinhVienService.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement.gRPC\\Services\\SinhVienService.cs",
-              "RelativeDocumentMoniker": "StudentManagement.gRPC\\Services\\SinhVienService.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement.gRPC\\Services\\SinhVienService.cs",
-              "RelativeToolTip": "StudentManagement.gRPC\\Services\\SinhVienService.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAgwB0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T17:04:25.664Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "SinhVienRepository.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement.NHibernate\\Repositories\\SinhVienRepository.cs",
-              "RelativeDocumentMoniker": "StudentManagement.NHibernate\\Repositories\\SinhVienRepository.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement.NHibernate\\Repositories\\SinhVienRepository.cs",
-              "RelativeToolTip": "StudentManagement.NHibernate\\Repositories\\SinhVienRepository.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwDMAAAAIAAAAAAAAAA==",
+              "Title": "ISinhVienService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\ISinhVienService.cs",
+              "RelativeDocumentMoniker": "Share\\IServices\\ISinhVienService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\ISinhVienService.cs",
+              "RelativeToolTip": "Share\\IServices\\ISinhVienService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:45:17.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\appsettings.json",
-              "RelativeDocumentMoniker": "StudentManagement\\appsettings.json",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\appsettings.json",
-              "RelativeToolTip": "StudentManagement\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-19T16:42:49.841Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GiaoVienManagement.razor.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
-              "RelativeDocumentMoniker": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
-              "RelativeToolTip": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowAoAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:35:14.996Z",
+              "WhenOpened": "2025-03-20T04:45:55.363Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SinhVienManagement.razor",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
-              "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
-              "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAAABMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-19T16:34:31.165Z",
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Program.cs",
+              "RelativeDocumentMoniker": "StudentManagement\\Program.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Program.cs",
+              "RelativeToolTip": "StudentManagement\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACUAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T07:01:47.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Program.cs",
+              "RelativeDocumentMoniker": "GrpcService\\Program.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Program.cs",
+              "RelativeToolTip": "GrpcService\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T07:13:42.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\appsettings.json",
+              "RelativeDocumentMoniker": "StudentManagement\\appsettings.json",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\appsettings.json",
+              "RelativeToolTip": "StudentManagement\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-20T07:26:32.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SinhVienService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\SinhVienService.cs",
+              "RelativeDocumentMoniker": "GrpcService\\Services\\SinhVienService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\SinhVienService.cs",
+              "RelativeToolTip": "GrpcService\\Services\\SinhVienService.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAkwHIAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:04:34.433Z",
               "EditorCaption": ""
             },
             {
@@ -123,9 +166,140 @@
               "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor.cs",
               "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor.cs",
               "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAswEAAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAUwBMAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:34:29.086Z"
+              "WhenOpened": "2025-03-20T02:22:34.595Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GiaoVienManagement.razor.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "RelativeDocumentMoniker": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "RelativeToolTip": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAA/wE4AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:00:10.793Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ExcelExportService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\ExcelExportService.cs",
+              "RelativeDocumentMoniker": "GrpcService\\Services\\ExcelExportService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\ExcelExportService.cs",
+              "RelativeToolTip": "GrpcService\\Services\\ExcelExportService.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAowBwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:04:04.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IExcelExportService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\IExcelExportService.cs",
+              "RelativeDocumentMoniker": "Share\\IServices\\IExcelExportService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\IExcelExportService.cs",
+              "RelativeToolTip": "Share\\IServices\\IExcelExportService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T05:44:23.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IGiaoVienService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\IGiaoVienService.cs",
+              "RelativeDocumentMoniker": "Share\\IServices\\IGiaoVienService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\IGiaoVienService.cs",
+              "RelativeToolTip": "Share\\IServices\\IGiaoVienService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T04:48:52.216Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ILopHocService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\ILopHocService.cs",
+              "RelativeDocumentMoniker": "Share\\IServices\\ILopHocService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\IServices\\ILopHocService.cs",
+              "RelativeToolTip": "Share\\IServices\\ILopHocService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBZwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T04:48:54.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LopHocService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\LopHocService.cs",
+              "RelativeDocumentMoniker": "GrpcService\\Services\\LopHocService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\LopHocService.cs",
+              "RelativeToolTip": "GrpcService\\Services\\LopHocService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:04:29.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GiaoVienService.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\GiaoVienService.cs",
+              "RelativeDocumentMoniker": "GrpcService\\Services\\GiaoVienService.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\GiaoVienService.cs",
+              "RelativeToolTip": "GrpcService\\Services\\GiaoVienService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T03:04:23.345Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SinhVienManagement.razor",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
+              "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
+              "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBZwB0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-20T03:06:37.055Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "GiaoVienListResponse.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\GiaoVien\\GiaoVienListResponse.cs",
+              "RelativeDocumentMoniker": "Share\\DTOs\\GiaoVien\\GiaoVienListResponse.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\GiaoVien\\GiaoVienListResponse.cs",
+              "RelativeToolTip": "Share\\DTOs\\GiaoVien\\GiaoVienListResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T02:24:02.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SinhVienMapping.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\AutoMap\\SinhVienMapping.cs",
+              "RelativeDocumentMoniker": "GrpcService\\AutoMap\\SinhVienMapping.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\AutoMap\\SinhVienMapping.cs",
+              "RelativeToolTip": "GrpcService\\AutoMap\\SinhVienMapping.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T02:16:06.843Z",
+              "EditorCaption": ""
             }
           ]
         }
