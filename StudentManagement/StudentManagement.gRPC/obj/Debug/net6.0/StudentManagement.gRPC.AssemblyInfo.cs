@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudentManagement.gRPC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6d49f98381ab706d04a2a8fa74c163f6f5e64fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbec92b96077fa714d330d339afe51c8e5c853ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentManagement.gRPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentManagement.gRPC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
