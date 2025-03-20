@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StudentManagement.NHibernate")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db875f05249382e8fc27c4beb63fc9692ad14bc2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd63066070008f54a37c7a67d9713e002c054801")]
 [assembly: System.Reflection.AssemblyProductAttribute("StudentManagement.NHibernate")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StudentManagement.NHibernate")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

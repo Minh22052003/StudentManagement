@@ -108,12 +108,16 @@ namespace GrpcService.Services
             }
         }
 
-        public async Task<SinhVienListResponse> GetListSinhVienAsync()
+        public async Task<List<SinhVienResponse>> GetListSinhVienAsync(PageChange pageChange)
         {
             try
             {
-                var students = await _studentRepository.GetSinhVienListAsync();
-                var studentsResponse = _mapper.Map<SinhVienListResponse>(students);
+                var students = await _studentRepository.GetSinhVienListAsync(pageChange.PageSize, pageChange.PageIndex);
+                var studentsResponse = new List<SinhVienResponse>();
+                for (int i = 0; i < students.Count; i++)
+                {
+                    studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
+                }
                 return studentsResponse;
             }
             catch(Exception ex)
@@ -138,13 +142,17 @@ namespace GrpcService.Services
             }
         }
 
-        public async Task<SinhVienListResponse> SortSinhVienListByNameAsync()
+        public async Task<List<SinhVienResponse>> SortSinhVienListByNameAsync(PageChange pageChange)
         {
             try
             {
-                var students = await _studentRepository.GetSinhVienListSortByNameAsync();
-                var studentsResponse = _mapper.Map<SinhVienListResponse>(students);
-                return (studentsResponse);
+                var students = await _studentRepository.GetSinhVienListSortByNameAsync(pageChange.PageSize, pageChange.PageIndex);
+                var studentsResponse = new List<SinhVienResponse>();
+                for (int i = 0; i < students.Count; i++)
+                {
+                    studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
+                }
+                return studentsResponse;
             }
             catch (Exception ex)
             {

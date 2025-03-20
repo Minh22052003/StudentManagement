@@ -5,7 +5,7 @@ namespace StudentManagement.NHibernate.IRepositories
 {
     public interface ISinhVienRepository : IRepository<SinhVien>
     {
-        Task<List<SinhVien>> GetSinhVienListAsync();
+        Task<List<SinhVien>> GetSinhVienListAsync(int PageSize, int PageIndex);
         Task<SinhVien> AddSinhVienAsync(SinhVien sinhVien);
 
         Task<SinhVien> UpdateSinhVienAsync(SinhVien sinhVien);
@@ -14,7 +14,7 @@ namespace StudentManagement.NHibernate.IRepositories
 
         Task<SinhVien> GetSinhVienByIDAsync(int id);
 
-        Task<List<SinhVien>> GetSinhVienListSortByNameAsync();
+        Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int PageSize, int PageIndex);
 
         Task<List<SinhVien>> GetSinhVienListByLopHocAsync(int MaLop);
     }

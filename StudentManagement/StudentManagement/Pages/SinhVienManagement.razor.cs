@@ -1,20 +1,30 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using AntDesign;
+using AntDesign.TableModels;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using Share.DTOs.SinhVien;
+using Share.DTOs.Lop;
 using Share.IServices;
+using Share.DTOs.Common;
+using System.Threading.Tasks;
 
 namespace StudentManagement.Pages
 {
     public partial class SinhVienManagement : ComponentBase
     {
-        private Share.DTOs.SinhVien.SinhVienListResponse? sinhviens = new();
-        private Share.DTOs.SinhVien.RequestSinhVienAdd newStudent = new();
-        private Share.DTOs.SinhVien.SinhVienResponse sinhVienEdit = new();
-        private Share.DTOs.SinhVien.SinhVienResponse sinhVienDelete = new();
-        private Share.DTOs.Lop.LopListResponse classes = new();
-        private bool showAddModal = false;
-        private bool showEditModal = false;
-        private bool showDeleteModal = false;
-        private string searchMaSV = "";
+        List<SinhVienResponse> sinhviens = new();
+        RequestSinhVienAdd newStudent = new();
+        SinhVienResponse sinhVienEdit = new();
+        SinhVienResponse sinhVienDelete = new();
+        LopListResponse classes = new();
+        RequestSinhVien ItemData = new();
+        bool showAddModal = false;
+        bool showEditModal = false;
+        bool showDeleteModal = false;
+        string searchMaSV = "";
+        int pageIndex = 1;
+        int pageSize = 10;
+        bool checksort = false;
 
         [Inject]
         ISinhVienService SinhVienService { get; set; }
@@ -34,13 +44,34 @@ namespace StudentManagement.Pages
         // default
         private async Task LoadSinhViensAsync()
         {
-            sinhviens = await SinhVienService.GetListSinhVienAsync();
+            PageChange pageChange = new PageChange();
+            pageChange.PageSize = pageSize;
+            pageChange.PageIndex = pageIndex;
+            sinhviens = await SinhVienService.GetListSinhVienAsync(pageChange);
+            checksort = false;
+        }
+
+        async Task OnPageChanged(int newPage)
+        {
+            pageIndex = newPage < 1 ? 1 : newPage;
+            if (checksort)
+            {
+                await LoadSinhViensSortByNameAsync();
+            }
+            else
+            {
+                await LoadSinhViensAsync();
+            }
         }
 
         // sort by name
         private async Task LoadSinhViensSortByNameAsync()
         {
-            sinhviens = await SinhVienService.SortSinhVienListByNameAsync();
+            PageChange pageChange = new PageChange();
+            pageChange.PageSize = pageSize;
+            pageChange.PageIndex = pageIndex;
+            sinhviens = await SinhVienService.SortSinhVienListByNameAsync(pageChange);
+            checksort = true;
         }
 
         // load item class in add and update form
@@ -157,8 +188,8 @@ namespace StudentManagement.Pages
                     return;
                 }
 
-                sinhviens.SinhViens.Clear();
-                sinhviens.SinhViens.Add(sinhvien);
+                sinhviens.Clear();
+                sinhviens.Add(sinhvien);
 
             }
             else
@@ -166,5 +197,7 @@ namespace StudentManagement.Pages
                 await LoadSinhViensAsync();
             }
         }
+
+        
     }
 }

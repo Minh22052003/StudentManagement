@@ -11,7 +11,7 @@
                     <AntDesign.Charts.Column Data="lopReponseCharts" Config="config1" @key="lopReponseCharts" />
                 </TabPane>
                 <h3>Biểu đồ học sinh theo lớp</h3>
-                <Button Type="ButtonType.Primary" @onclick="() => ExcelExportAsync(lopReponseCharts)">Xuất Excel</Button>
+                <Button Type="ButtonType.Primary" @onclick="() => ExcelExportAsync()">Xuất Excel</Button>
             </Tabs>
         }
         else

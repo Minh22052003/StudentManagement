@@ -13,6 +13,7 @@ namespace StudentManagement.Pages
         GiaoVienListSelect giaoviens = new();
         GiaoVienSelect _selectedItem = new();
         int _selectedValue;
+        int _selectedMaGV;
         private List<LopReponseChart> lopReponseCharts = new();
 
 
@@ -59,18 +60,22 @@ namespace StudentManagement.Pages
 
         private async Task OnSelectedItemChangedHandler(GiaoVienSelect value)
 	    {
-            
+            _selectedMaGV = value.MaGV;
             await LoadlopReponseCharts(value.MaGV);
             await InvokeAsync(StateHasChanged);
         }
 
-        private async Task ExcelExportAsync(List<LopReponseChart> lopReponseCharts)
+        private async Task ExcelExportAsync()
         {
             if (lopReponseCharts.Count > 0)
             {
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 string fileName = $"GiaoVien_{timestamp}.xlsx";
-                var checkExport = _excelExportService.ExportToExcel(lopReponseCharts, "Main", fileName);
+                RequestGiaoVien requestGiaoVien = new RequestGiaoVien
+                {
+                    MaGV = _selectedMaGV,
+                };
+                var checkExport =await _excelExportService.ExportToExcelGiaoVienAsync(requestGiaoVien);
                 if(checkExport.Success == false)
                 {
                     await JS.InvokeVoidAsync("alert", "Xuất file Excle không thành công!");

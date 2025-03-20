@@ -1,17 +1,28 @@
 ﻿using ClosedXML.Excel;
 using Share.DTOs.Common;
+using Share.DTOs.GiaoVien;
 using Share.DTOs.Lop;
 using Share.IServices;
+using StudentManagement.NHibernate.IRepositories;
+using StudentManagement.NHibernate.Models;
 using System.Reflection;
 
 namespace GrpcService.Services
 {
     public class ExcelExportService : IExcelExportService
     {
-        public BoolResponse ExportToExcel(List<LopReponseChart> data, string sheetName = "Sheet1", string fileName = "file.xlsx")
+        private readonly ILopHocRepository _lopHocRepository;
+        public ExcelExportService(ILopHocRepository lopHocRepository)
         {
+            _lopHocRepository = lopHocRepository;
+        }
+        public async Task<BoolResponse> ExportToExcelGiaoVienAsync(RequestGiaoVien data)
+        {
+            string sheetName = "Sheet1";
+            string fileName = "Data.xlsx";
             BoolResponse checkexport = new BoolResponse();
             checkexport.Success = false;
+            List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(data.MaGV);
             try
             {
                 string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
@@ -21,25 +32,31 @@ namespace GrpcService.Services
                 {
                     var worksheet = workbook.Worksheets.Add(sheetName);
 
-                    if (data == null || !data.Any())
+                    if (lophocs == null || !lophocs.Any())
                     {
                         return checkexport;
                     }
 
-                    PropertyInfo[] properties = typeof(LopReponseChart).GetProperties();
+                    // Write header row
+                    worksheet.Cell(1, 1).Value = "STT";
+                    worksheet.Cell(1, 2).Value = "Tên giáo viên";
+                    worksheet.Cell(1, 3).Value = "Tên lớp";
+                    worksheet.Cell(1, 4).Value = "Tên sinh viên";
 
-                    for (int col = 0; col < properties.Length; col++)
+                    // Write data rows
+                    for (int i = 0; i < lophocs.Count; i++)
                     {
-                        worksheet.Cell(1, col + 1).Value = properties[col].Name;
-                    }
-
-                    for (int row = 0; row < data.Count; row++)
-                    {
-                        for (int col = 0; col < properties.Length; col++)
+                        var item = lophocs[i];
+                        int row = i + 2;
+                        foreach (var sv in item.SinhViens)
                         {
-                            var value = properties[col].GetValue(data[row]);
-                            worksheet.Cell(row + 2, col + 1).Value = value?.ToString() ?? "";
+                            worksheet.Cell(row, 1).Value = i + 1;
+                            worksheet.Cell(row, 2).Value = item.GiaoVien.TenGV ?? "";
+                            worksheet.Cell(row, 3).Value = item.TenLop ?? "";
+                            worksheet.Cell(row, 4).Value = sv.TenSV ?? "";
+                            row++;
                         }
+
                     }
 
                     worksheet.Columns().AdjustToContents();

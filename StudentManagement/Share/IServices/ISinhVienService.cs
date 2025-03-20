@@ -9,7 +9,7 @@ namespace Share.IServices
     public interface ISinhVienService
     {
         [OperationContract]
-        Task<SinhVienListResponse> GetListSinhVienAsync();
+        Task<List<SinhVienResponse>> GetListSinhVienAsync(PageChange pageChange);
 
         [OperationContract]
         Task<BoolResponse> AddSinhVienAsync(RequestSinhVienAdd request);
@@ -21,7 +21,7 @@ namespace Share.IServices
         Task<BoolResponse> DeleteSinhVienAsync(RequestSinhVien request);
 
         [OperationContract]
-        Task<SinhVienListResponse> SortSinhVienListByNameAsync();
+        Task<List<SinhVienResponse>> SortSinhVienListByNameAsync(PageChange pageChange);
 
         [OperationContract]
         Task<SinhVienResponse> SearchBySinhVienIdAsync(RequestSinhVien request);
