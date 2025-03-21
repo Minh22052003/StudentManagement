@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "D:\\SOFTDREAM\\source\\StudentManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\sinhvienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\giaovienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\sinhvienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\sinhvienmanagement.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|d:\\softdream\\source\\studentmanagement\\grpcservice\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A669BDA6-7BB1-46D7-94D4-7E894F5788EE}|GrpcService\\GrpcService.csproj|solutionrelative:grpcservice\\services\\sinhvienservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|d:\\softdream\\source\\studentmanagement\\share\\dtos\\common\\pagechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ED1269D4-13BE-48AF-AA17-3D0975665419}|Share\\Share.csproj|solutionrelative:share\\dtos\\common\\pagechange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|d:\\softdream\\source\\studentmanagement\\studentmanagement\\pages\\giaovienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A7A0D3BD-53D6-4EBF-9B72-DD801E432586}|StudentManagement\\StudentManagement.csproj|solutionrelative:studentmanagement\\pages\\giaovienmanagement.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 259,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SinhVienManagement.razor",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
-              "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor",
-              "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAABmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-21T15:12:55.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SinhVienManagement.razor.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor.cs",
-              "RelativeDocumentMoniker": "StudentManagement\\Pages\\SinhVienManagement.razor.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\SinhVienManagement.razor.cs",
-              "RelativeToolTip": "StudentManagement\\Pages\\SinhVienManagement.razor.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAgwMUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T15:09:40.524Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PageChange.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\Common\\PageChange.cs",
-              "RelativeDocumentMoniker": "Share\\DTOs\\Common\\PageChange.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\Share\\DTOs\\Common\\PageChange.cs",
-              "RelativeToolTip": "Share\\DTOs\\Common\\PageChange.cs",
+              "Title": "GiaoVienManagement.razor",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor",
+              "RelativeDocumentMoniker": "StudentManagement\\Pages\\GiaoVienManagement.razor",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor",
+              "RelativeToolTip": "StudentManagement\\Pages\\GiaoVienManagement.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T14:40:01.533Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-21T17:37:03.612Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SinhVienService.cs",
-              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\SinhVienService.cs",
-              "RelativeDocumentMoniker": "GrpcService\\Services\\SinhVienService.cs",
-              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\GrpcService\\Services\\SinhVienService.cs",
-              "RelativeToolTip": "GrpcService\\Services\\SinhVienService.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAowHEAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "GiaoVienManagement.razor.cs",
+              "DocumentMoniker": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "RelativeDocumentMoniker": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "ToolTip": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "RelativeToolTip": "StudentManagement\\Pages\\GiaoVienManagement.razor.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAwwEMAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-21T10:34:26.472Z",
+              "WhenOpened": "2025-03-21T17:36:21.943Z",
               "EditorCaption": ""
             }
           ]

@@ -11,9 +11,6 @@ namespace Share.IServices
         Task<LopListResponse> GetListLopAsync();
 
         [OperationContract]
-        Task<LopResponse> SearchByLopHocIdAsync(RequestLop requestLop);
-
-        [OperationContract]
-        Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien);
+        Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(string MaGV);
     }
 }

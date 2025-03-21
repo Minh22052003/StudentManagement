@@ -16,14 +16,14 @@ namespace GrpcService.Services
         {
             _lopHocRepository = lopHocRepository;
         }
-        public async Task<BoolResponse> ExportToExcelGiaoVienAsync(RequestGiaoVien data)
+        public async Task<BoolResponse> ExportToExcelGiaoVienAsync(string MaGV)
         {
             string sheetName = "Sheet1";
             string fileName = "Data.xlsx";
             int j = 0;
             BoolResponse checkexport = new BoolResponse();
             checkexport.Success = false;
-            List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(data.MaGV);
+            List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(int.Parse(MaGV));
             try
             {
                 string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");

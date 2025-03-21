@@ -24,22 +24,22 @@ namespace GrpcService.Services
             {
                 var lopHocs = await _lopHocRepository.GetLopHocListAsync();
                 var lopHocResponse = _mapper.Map<LopListResponse>(lopHocs);
+
                 return lopHocResponse;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Loi " + ex);
-                return null;
+                throw;
             }
         }
 
-        public async Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien)
+        public async Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(string MaGV)
         {
             try
             {
-                List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(requestGiaoVien.MaGV);
+                List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(int.Parse(MaGV));
                 List<LopReponseChart> lopResponses = new List<LopReponseChart>();
-
                 foreach (var lop in lophocs)
                 {
                     var lopResponse = _mapper.Map<LopReponseChart>(lop);
@@ -51,24 +51,10 @@ namespace GrpcService.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Loi: " + ex.Message);
-                return null;
+                throw;
             }
         }
 
 
-        async Task<LopResponse> ILopHocService.SearchByLopHocIdAsync(RequestLop requestLop)
-        {
-            try
-            {
-                var lopHoc = await _lopHocRepository.GetLopHocById(requestLop.MaLop);
-                var lopHocResponse = _mapper.Map<LopResponse>(lopHoc);
-                return lopHocResponse;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Loi " + ex);
-                return null;
-            }
-        }
     }
 }

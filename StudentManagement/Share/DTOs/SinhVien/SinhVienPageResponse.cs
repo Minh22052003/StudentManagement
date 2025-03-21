@@ -11,7 +11,7 @@ namespace Share.DTOs.SinhVien
     public class SinhVienPageResponse
     {
         [DataMember(Order = 1)]
-        public List<SinhVienResponse> SinhViens { get; set; }
+        public List<SinhVienResponse>? SinhViens { get; set; }
 
         [DataMember(Order = 2)]
         public int Total { get; set; }

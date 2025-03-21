@@ -15,14 +15,8 @@ namespace GrpcService.Services
             _giaoVienRepository = giaoVienRepository;
             _mapper = mapper;
         }
-        public async Task<GiaoVienListResponse> GetListGiaoVienAsync()
-        {
-            var listGV = await _giaoVienRepository.GetGiaoVienListAsync();
-            var giaoviens = _mapper.Map<GiaoVienListResponse>(listGV);
-            return giaoviens;
-        }
 
-        public async Task<GiaoVienListSelect> GetListGiaoVienSelectAsync()
+        public async Task<GiaoVienListSelect> GetAllGiaoVienAsync()
         {
             try
             {
@@ -33,13 +27,9 @@ namespace GrpcService.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Loi " + ex);
-                return null;
+                throw;
             }
         }
 
-        public Task<GiaoVienResponse> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

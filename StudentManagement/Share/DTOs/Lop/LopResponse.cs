@@ -10,10 +10,10 @@ namespace Share.DTOs.Lop
         public int MaLop { get; set; }
 
         [DataMember(Order = 2)]
-        public string TenLop { get; set; }
+        public string? TenLop { get; set; }
 
         [DataMember(Order = 3)]
-        public string MonHoc { get; set; }
+        public string? MonHoc { get; set; }
 
         [DataMember(Order = 4)]
         public int? MaGV { get; set; }

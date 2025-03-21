@@ -9,6 +9,6 @@ namespace Share.IServices
     public interface IExcelExportService
     {
         [OperationContract]
-        Task<BoolResponse> ExportToExcelGiaoVienAsync(RequestGiaoVien data);
+        Task<BoolResponse> ExportToExcelGiaoVienAsync(string MaGV);
     }
 }

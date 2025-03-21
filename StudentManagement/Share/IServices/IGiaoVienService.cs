@@ -7,11 +7,7 @@ namespace Share.IServices
     public interface IGiaoVienService
     {
         [OperationContract]
-        Task<GiaoVienListResponse> GetListGiaoVienAsync();
+        Task<GiaoVienListSelect> GetAllGiaoVienAsync();
 
-        Task<GiaoVienListSelect> GetListGiaoVienSelectAsync();
-
-        [OperationContract]
-        Task<GiaoVienResponse> SearchByGiaoVienIdAsync(RequestGiaoVien requestGiaoVien);
     }
 }

@@ -1,4 +1,5 @@
-﻿using AntDesign.Charts;
+﻿using AntDesign;
+using AntDesign.Charts;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Share.DTOs.GiaoVien;
@@ -10,25 +11,25 @@ namespace StudentManagement.Pages
 {
     public partial class GiaoVienManagement : ComponentBase
     {
-        GiaoVienListSelect giaoviens = new();
-        GiaoVienSelect _selectedItem = new();
+        [Inject]
+        private IGiaoVienService _giaoVienService { get; set; } = default!;
+
+        [Inject]
+        private ILopHocService _lopHocService { get; set; } = default!;
+
+        [Inject]
+        private IExcelExportService _excelExportService { get; set; } = default!;
+
+        [Inject]
+        IMessageService _message { get; set; } = default!;
+
         int _selectedValue;
         int _selectedMaGV;
-        private List<LopReponseChart> lopReponseCharts = new();
 
+        bool isExporting = false;
 
-        [Inject]
-        private IGiaoVienService _giaoVienService { get; set; }
-
-        [Inject]
-        private ILopHocService _lopHocService { get; set; }
-
-        [Inject]
-        private IExcelExportService _excelExportService { get; set; }
-
-        [Inject]
-        private IJSRuntime JS {  get; set; }
-
+        private List<LopReponseChart> LopReponseCharts = new();
+        GiaoVienListSelect GiaoViens = new();
 
         protected override async Task OnInitializedAsync()
         {
@@ -38,17 +39,12 @@ namespace StudentManagement.Pages
 
         private async Task LoadListGiaoVien()
         {
-            giaoviens = await _giaoVienService.GetListGiaoVienSelectAsync();
+            GiaoViens = await _giaoVienService.GetAllGiaoVienAsync();
         }
 
         private async Task LoadlopReponseCharts(int maGV)
         {
-            RequestGiaoVien requestGiaoVien = new RequestGiaoVien
-            {
-                MaGV = maGV,
-            };
-
-            lopReponseCharts = await _lopHocService.SearchByGiaoVienIdAsync(requestGiaoVien);
+            LopReponseCharts = await _lopHocService.SearchByGiaoVienIdAsync(maGV.ToString());
         }
 
         ColumnConfig config1 = new ColumnConfig
@@ -67,27 +63,25 @@ namespace StudentManagement.Pages
 
         private async Task ExcelExportAsync()
         {
-            if (lopReponseCharts.Count > 0)
+            if (LopReponseCharts.Count > 0)
             {
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                string fileName = $"GiaoVien_{timestamp}.xlsx";
-                RequestGiaoVien requestGiaoVien = new RequestGiaoVien
-                {
-                    MaGV = _selectedMaGV,
-                };
-                var checkExport =await _excelExportService.ExportToExcelGiaoVienAsync(requestGiaoVien);
+                isExporting = true;
+                var checkExport =await _excelExportService.ExportToExcelGiaoVienAsync(_selectedMaGV.ToString());
                 if(checkExport.Success == false)
                 {
-                    await JS.InvokeVoidAsync("alert", "Xuất file Excle không thành công!");
+                    await _message.Error("Xuất file Excle không thành công!");
+                    isExporting = false;
                 }
                 else
                 {
-                    await JS.InvokeVoidAsync("alert", "Xuất file Excle thành công!");
+                    await _message.Success("Xuất file Excle thành công!");
+                    isExporting = false;
                 }
             }
             else
             {
-                await JS.InvokeVoidAsync("alert", "Không có dữ liệu để xuất excel!");
+                await _message.Warning("Không có dữ liệu để xuất excel!");
+                isExporting = false;
             }
         }
 

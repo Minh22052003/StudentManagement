@@ -46,6 +46,7 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }
@@ -60,6 +61,7 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }
@@ -121,6 +123,7 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw;
             }
         }
