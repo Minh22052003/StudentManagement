@@ -115,5 +115,10 @@ namespace StudentManagement.NHibernate.Repositories
         {
             return await _session.Query<SinhVien>().Where(x=>x.MaLop == MaLop).ToListAsync();
         }
+
+        public async Task<int> GetTotalSinhVienAsync()
+        {
+            return await _session.Query<SinhVien>().CountAsync();
+        }
     }
 }

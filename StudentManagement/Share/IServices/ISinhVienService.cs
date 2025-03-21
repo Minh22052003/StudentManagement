@@ -25,5 +25,8 @@ namespace Share.IServices
 
         [OperationContract]
         Task<SinhVienResponse> SearchBySinhVienIdAsync(RequestSinhVien request);
+
+        [OperationContract]
+        Task<PageTotalResponse> GetPageTotalAsync();
     }
 }

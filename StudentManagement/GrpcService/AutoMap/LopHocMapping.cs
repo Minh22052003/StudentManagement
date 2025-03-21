@@ -9,7 +9,9 @@ namespace GrpcService.AutoMap
         public LopHocMapping()
         {
             CreateMap<LopHoc, LopResponse>()
-                .ForMember(dest => dest.MaGV, opt => opt.MapFrom(src => src.GiaoVien.MaGV));
+                .ForMember(dest => dest.MaLop, opt => opt.MapFrom(src => src.MaLop))
+                .ForMember(dest => dest.MaGV, opt => opt.MapFrom(src => src.GiaoVien.MaGV))
+                .ForMember(dest => dest.TenLop, opt => opt.MapFrom(src => src.TenLop));
 
             CreateMap<List<LopHoc>, LopListResponse>()
                 .ForMember(dest => dest.Lops, opt => opt.MapFrom(src => src));

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VP8R+FFhhJcsHZ4P9lG1aNbkxzgYwE3vWET85/4oRLg=",
+  "Hash": "62jhIhcIuGKtZgiq+HVraxndmL2iV+QrHu/u143+IQY=",
   "Source": "StudentManagement",
   "BasePath": "_content/StudentManagement",
   "Mode": "Default",
@@ -8016,27 +8016,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
-    },
-    {
-      "Identity": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\gvmanagament.css",
-      "SourceId": "StudentManagement",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\",
-      "BasePath": "_content/StudentManagement",
-      "RelativePath": "css/gvmanagament#[.{fingerprint}]?.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "dyjx89twm7",
-      "Integrity": "u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\gvmanagament.css"
     },
     {
       "Identity": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
@@ -39300,88 +39279,6 @@
       ]
     },
     {
-      "Route": "css/gvmanagament.css",
-      "AssetFile": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\gvmanagament.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 16:31:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk="
-        }
-      ]
-    },
-    {
-      "Route": "css/gvmanagament.dyjx89twm7.css",
-      "AssetFile": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\gvmanagament.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "14"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Wed, 19 Mar 2025 16:31:52 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "dyjx89twm7"
-        },
-        {
-          "Name": "label",
-          "Value": "css/gvmanagament.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-u4DszuiY1WLPnENub5+KbAlwyJCcCHdKlyaXaKLaRqk="
-        }
-      ]
-    },
-    {
       "Route": "css/open-iconic/font/css/open-iconic-bootstrap.min.cmapd0fi15.css",
       "AssetFile": "D:\\SOFTDREAM\\source\\StudentManagement\\StudentManagement\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "Selectors": [],
@@ -40306,7 +40203,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 07:05:00 GMT"
+          "Value": "Fri, 21 Mar 2025 07:02:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -40343,7 +40240,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 07:05:00 GMT"
+          "Value": "Fri, 21 Mar 2025 07:02:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -40388,7 +40285,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 07:05:00 GMT"
+          "Value": "Fri, 21 Mar 2025 07:02:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -40470,7 +40367,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Mar 2025 07:05:00 GMT"
+          "Value": "Fri, 21 Mar 2025 07:02:48 GMT"
         },
         {
           "Name": "Cache-Control",

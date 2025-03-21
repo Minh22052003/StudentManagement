@@ -1,12 +1,12 @@
-﻿using AntDesign;
-using AntDesign.TableModels;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Share.DTOs.SinhVien;
 using Share.DTOs.Lop;
 using Share.IServices;
 using Share.DTOs.Common;
 using System.Threading.Tasks;
+using AntDesign;
+using AntDesign.TableModels;
 
 namespace StudentManagement.Pages
 {
@@ -17,14 +17,20 @@ namespace StudentManagement.Pages
         SinhVienResponse sinhVienEdit = new();
         SinhVienResponse sinhVienDelete = new();
         LopListResponse classes = new();
-        RequestSinhVien ItemData = new();
-        bool showAddModal = false;
-        bool showEditModal = false;
-        bool showDeleteModal = false;
+        List<LopResponse> lopList = new();
+
+        bool checksort = false;
+        bool visibleAdd = false;
+        bool visibleEdit = false;
+        bool visibleDelete = false;
+
         string searchMaSV = "";
         int pageIndex = 1;
         int pageSize = 10;
-        bool checksort = false;
+        int totalCount = 0;
+
+        IEnumerable<SinhVienResponse> _selectedRows ;
+
 
         [Inject]
         ISinhVienService SinhVienService { get; set; }
@@ -38,7 +44,13 @@ namespace StudentManagement.Pages
         protected override async Task OnInitializedAsync()
         {
             await LoadSinhViensAsync();
-            await LoadLopHocsAsync();
+            await LoadListLopsAsync();
+        }
+
+        private async Task LoadPageTotalAsync()
+        {
+            var totalCountTMP = await SinhVienService.GetPageTotalAsync();
+            totalCount = totalCountTMP.Total;
         }
 
         // default
@@ -48,21 +60,17 @@ namespace StudentManagement.Pages
             pageChange.PageSize = pageSize;
             pageChange.PageIndex = pageIndex;
             sinhviens = await SinhVienService.GetListSinhVienAsync(pageChange);
+            await LoadPageTotalAsync();
             checksort = false;
         }
 
-        async Task OnPageChanged(int newPage)
+        // load list lop
+        private async Task LoadListLopsAsync()
         {
-            pageIndex = newPage < 1 ? 1 : newPage;
-            if (checksort)
-            {
-                await LoadSinhViensSortByNameAsync();
-            }
-            else
-            {
-                await LoadSinhViensAsync();
-            }
+            classes = await LopHocService.GetListLopAsync();
+            lopList = classes.Lops.ToList();
         }
+
 
         // sort by name
         private async Task LoadSinhViensSortByNameAsync()
@@ -74,19 +82,44 @@ namespace StudentManagement.Pages
             checksort = true;
         }
 
-        // load item class in add and update form
-        private async Task LoadLopHocsAsync()
+        //Change Table
+        async Task OnChange(QueryModel<SinhVienResponse> queryModel)
         {
-            classes = await LopHocService.GetListLopAsync();
+            pageIndex = queryModel.PageIndex + 1;
+            pageSize = queryModel.PageSize;
+            if (checksort)
+            {
+                await LoadSinhViensSortByNameAsync();
+            }
+            else
+            {
+                await LoadSinhViensAsync();
+            }
+        }
+
+        //Change SinhVien Sort
+        async Task OnChangeSortSinhVien()
+        {
+            if (checksort == false)
+            {
+                await LoadSinhViensSortByNameAsync();
+            }
+            else
+            {
+                checksort = false;
+                await LoadSinhViensAsync();
+            }
         }
 
         // add
-        private void ShowAddForm()
+        #region add Sinh Vien
+        private async Task ShowAddForm()
         {
-            newStudent = new Share.DTOs.SinhVien.RequestSinhVienAdd();
-            showAddModal = true;
+            await LoadListLopsAsync();
+            this.visibleAdd = true;
         }
-        private async Task AddSinhVien()
+
+        private async Task acceptAddSinhVien()
         {
             if (string.IsNullOrWhiteSpace(newStudent.TenSV) ||
             newStudent.NgaySinh == default ||
@@ -98,7 +131,7 @@ namespace StudentManagement.Pages
             var response = await SinhVienService.AddSinhVienAsync(newStudent);
             if (response.Success == true)
             {
-                showAddModal = false;
+                CloseAddForm();
                 await JS.InvokeVoidAsync("alert", "Thêm sinh viên thành công!");
                 await LoadSinhViensAsync();
             }
@@ -107,19 +140,23 @@ namespace StudentManagement.Pages
                 await JS.InvokeVoidAsync("alert", "Thêm sinh viên thất bại!");
             }
         }
+
         private void CloseAddForm()
         {
-            showAddModal = false;
+            this.visibleAdd = false;
         }
 
+        #endregion
+
         // edit
-        private async Task ShowEditForm(int masv)
+        #region edit Sinh Vien
+        private async Task ShowEditForm(SinhVienResponse rowEdit)
         {
-            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+            var requestsv = new RequestSinhVien { MaSV = rowEdit.MaSV };
             sinhVienEdit = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
-            showEditModal = true;
+            visibleEdit = true;
         }
-        private async Task UpdateSinhVien()
+        private async Task acceptUpdateSinhVien()
         {
             if (string.IsNullOrWhiteSpace(sinhVienEdit.TenSV) ||
             sinhVienEdit.NgaySinh == default ||
@@ -131,7 +168,6 @@ namespace StudentManagement.Pages
             var response = await SinhVienService.UpdateSinhVienAsync(sinhVienEdit);
             if (response.Success == true)
             {
-                showAddModal = false;
                 await LoadSinhViensAsync();
                 await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thành công!");
                 CloseEditForm();
@@ -143,23 +179,25 @@ namespace StudentManagement.Pages
         }
         private void CloseEditForm()
         {
-            showEditModal = false;
+            visibleEdit = false;
         }
 
+        #endregion
+
         // delete
-        private async Task ShowDeleteForm(int masv)
+        #region delete Sinh Vien
+        private async Task ShowDeleteForm(SinhVienResponse rowEdit)
         {
-            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = masv };
+            var requestsv = new RequestSinhVien { MaSV = rowEdit.MaSV };
             sinhVienDelete = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
-            showDeleteModal = true;
+            visibleDelete = true;
         }
-        private async Task DeleteSinhVien()
+        private async Task acceptDeleteSinhVien()
         {
-            var requestsv = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = sinhVienDelete.MaSV };
+            var requestsv = new RequestSinhVien { MaSV = sinhVienDelete.MaSV };
             var response = await SinhVienService.DeleteSinhVienAsync(requestsv);
             if (response.Success == true)
             {
-                showAddModal = false;
                 await LoadSinhViensAsync();
                 await JS.InvokeVoidAsync("alert", "Xóa sinh viên thành công!");
                 CloseDeleteForm();
@@ -171,15 +209,17 @@ namespace StudentManagement.Pages
         }
         private void CloseDeleteForm()
         {
-            showDeleteModal = false;
+            visibleDelete = false;
         }
+
+        #endregion
 
         //search
         private async Task SearchStudent()
         {
             if (!string.IsNullOrWhiteSpace(searchMaSV))
             {
-                var svrequest = new Share.DTOs.SinhVien.RequestSinhVien { MaSV = int.Parse(searchMaSV) };
+                var svrequest = new RequestSinhVien { MaSV = int.Parse(searchMaSV) };
 
                 var sinhvien = await SinhVienService.SearchBySinhVienIdAsync(svrequest);
                 if (sinhvien == null)
@@ -190,7 +230,7 @@ namespace StudentManagement.Pages
 
                 sinhviens.Clear();
                 sinhviens.Add(sinhvien);
-
+                totalCount = sinhviens.Count();
             }
             else
             {

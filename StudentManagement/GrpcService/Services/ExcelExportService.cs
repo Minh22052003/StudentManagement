@@ -20,6 +20,7 @@ namespace GrpcService.Services
         {
             string sheetName = "Sheet1";
             string fileName = "Data.xlsx";
+            int j = 0;
             BoolResponse checkexport = new BoolResponse();
             checkexport.Success = false;
             List<LopHoc> lophocs = await _lopHocRepository.GetLopHocByGiaoVien(data.MaGV);
@@ -47,14 +48,15 @@ namespace GrpcService.Services
                     for (int i = 0; i < lophocs.Count; i++)
                     {
                         var item = lophocs[i];
-                        int row = i + 2;
+                        int row = j + 2;
                         foreach (var sv in item.SinhViens)
                         {
-                            worksheet.Cell(row, 1).Value = i + 1;
+                            worksheet.Cell(row, 1).Value = j + 1;
                             worksheet.Cell(row, 2).Value = item.GiaoVien.TenGV ?? "";
                             worksheet.Cell(row, 3).Value = item.TenLop ?? "";
                             worksheet.Cell(row, 4).Value = sv.TenSV ?? "";
                             row++;
+                            j++;
                         }
 
                     }

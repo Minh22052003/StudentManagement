@@ -44,7 +44,6 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi: " + ex);
                 throw;
             }
         }
@@ -57,7 +56,7 @@ namespace GrpcService.Services
             {
                 var student = _mapper.Map<SinhVien>(request);
                 student.MaLop = request.MaLop;
-                student.LopHoc = _lopHocRepository.GetLopHocById(student.MaLop).Result;
+                student.LopHoc = await _lopHocRepository.GetLopHocById(student.MaLop);
 
                 var studenttmp = await _studentRepository.GetSinhVienByIDAsync(student.MaSV);
                 if (studenttmp == null)
@@ -81,7 +80,6 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi: " + ex);
                 throw;
             }
         }
@@ -103,7 +101,6 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi: " + ex);
                 throw;
             }
         }
@@ -137,7 +134,6 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi: " + ex);
                 return null;
             }
         }
@@ -156,11 +152,23 @@ namespace GrpcService.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Loi: " + ex);
                 return null;
             }
 
         }
-        
+
+        public async Task<PageTotalResponse> GetPageTotalAsync()
+        {
+            try
+            {
+                var pageChange = new PageTotalResponse();
+                pageChange.Total = await _studentRepository.GetTotalSinhVienAsync();
+                return pageChange;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -1,0 +1,50 @@
+﻿@code {
+    [Parameter]
+    public bool visibleEdit { get; set; }
+
+    [Parameter]
+    public EventCallback CloseEditForm { get; set; }
+
+
+    [Parameter]
+    public EventCallback acceptUpdateSinhVien { get; set; }
+
+    [Parameter]
+    public Share.DTOs.SinhVien.SinhVienResponse editStudent { get; set; }
+
+    [Parameter]
+    public List<Share.DTOs.Lop.LopResponse> LopList { get; set; }
+}
+
+<Drawer Closable="true" Width="500" Visible="visibleEdit" Title='("Sửa thông tin sinh viên")' OnClose="CloseEditForm">
+    <Template style="height:90%">
+        <Form Model="@editStudent" LabelColSpan="8" WrapperColSpan="16">
+            <FormItem Label="Mã sinh viên">
+                <AntDesign.InputNumber DefaultValue="@editStudent.MaSV" @bind-Value="editStudent.MaSV" Style="width: 50%;" Disabled />
+            </FormItem>
+            <FormItem Label="Họ và tên">
+                <Input DefaultValue="@editStudent.TenSV" @bind-Value="editStudent.TenSV" Style="width: 70%;" />
+            </FormItem>
+            <FormItem Label="Ngày sinh">
+                <DatePicker DefaultValue="@editStudent.NgaySinh" @bind-Value="@editStudent.NgaySinh" TValue="DateTime?" />
+            </FormItem>
+            <FormItem Label="Địa chỉ">
+                <Input DefaultValue="@editStudent.DiaChi" @bind-Value="@editStudent.DiaChi" />
+            </FormItem>
+            <FormItem Label="Chọn lớp">
+                <Select DataSource="@LopList" 
+                        DefaultValue="@editStudent.MaLop"
+                        @bind-Value="@editStudent.MaLop"
+                        ValueProperty="c=>c.MaLop"
+                        LabelProperty="c=>c.TenLop" 
+                        Style="width: 70%;">
+                </Select>
+            </FormItem>
+            <FormItem WrapperColOffset="8" WrapperColSpan="16">
+                <Button HtmlType="submit" @onclick="acceptUpdateSinhVien">
+                    Xác nhận
+                </Button>
+            </FormItem>
+        </Form>
+    </Template>
+</Drawer>

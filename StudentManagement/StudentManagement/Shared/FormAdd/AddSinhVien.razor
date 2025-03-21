@@ -1,0 +1,49 @@
+﻿@code{
+    [Parameter]
+    public bool visibleAdd { get; set; }
+
+    [Parameter]
+    public EventCallback CloseAddForm { get; set; }
+
+
+    [Parameter]
+    public EventCallback acceptAddSinhVien { get; set; }
+
+    [Parameter]
+    public Share.DTOs.SinhVien.RequestSinhVienAdd newStudent { get; set; }
+
+    [Parameter]
+    public List<Share.DTOs.Lop.LopResponse> LopList { get; set; }
+}
+
+<Drawer Closable="true" Width="500" Visible="visibleAdd" Title='("Thêm sinh viên mới")' OnClose="CloseAddForm">
+    <Template style="height:90%">
+        <Form Model="@newStudent" LabelColSpan="8" WrapperColSpan="16">
+            <FormItem Label="Mã sinh viên">
+                <AntDesign.InputNumber @bind-Value="newStudent.MaSV" Style="width: 50%;" />
+            </FormItem>
+            <FormItem Label="Họ và tên">
+                <Input @bind-Value="newStudent.TenSV" Style="width: 70%;" />
+            </FormItem>
+            <FormItem Label="Ngày sinh">
+                <DatePicker @bind-Value="@newStudent.NgaySinh" TValue="DateTime?" />
+            </FormItem>
+            <FormItem Label="Địa chỉ">
+                <Input @bind-Value="@newStudent.DiaChi" />
+            </FormItem>
+            <FormItem Label="Chọn lớp">
+                <Select DataSource="@LopList"
+                        @bind-Value="@newStudent.MaLop"
+                        ValueProperty="c=>c.MaLop"
+                        LabelProperty="c=>c.TenLop"
+                        Style="width: 70%;">
+                </Select>
+            </FormItem>
+            <FormItem WrapperColOffset="8" WrapperColSpan="16">
+                <Button HtmlType="submit" @onclick="acceptAddSinhVien">
+                    Xác nhận
+                </Button>
+            </FormItem>
+        </Form>
+    </Template>
+</Drawer>

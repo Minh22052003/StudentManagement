@@ -17,5 +17,7 @@ namespace StudentManagement.NHibernate.IRepositories
         Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int PageSize, int PageIndex);
 
         Task<List<SinhVien>> GetSinhVienListByLopHocAsync(int MaLop);
+
+        Task<int> GetTotalSinhVienAsync();
     }
 }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Share.DTOs.Common
 {
     [DataContract]
-    class PageTotalResponse
+    public class PageTotalResponse
     {
-        [DataMember]
+        [DataMember(Order = 1)]
         public int Total { get; set; }
     }
 }

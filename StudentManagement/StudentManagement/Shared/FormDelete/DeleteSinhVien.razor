@@ -1,0 +1,46 @@
+﻿@code{
+    [Parameter]
+    public bool visibleDelete { get; set; }
+    [Parameter]
+    public EventCallback CloseDeleteForm { get; set; }
+    [Parameter]
+    public EventCallback acceptDeleteSinhVien { get; set; }
+    [Parameter]
+    public Share.DTOs.SinhVien.SinhVienResponse sinhVienDelete { get; set; }
+}
+
+<Drawer Closable="true" Width="500" Visible="visibleDelete" Title='("Xác nhận xóa sinh viên")' OnClose="CloseDeleteForm">
+    <Template style="padding: 24px;">
+        <div class="ant-drawer-body">
+            <p class="text-danger fw-bold">Bạn có chắc chắn muốn xóa sinh viên này không?</p>
+            <div class="mb-3">
+                <label class="fw-bold">Mã sinh viên:</label>
+                <p>@sinhVienDelete.MaSV</p>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Họ và tên:</label>
+                <p>@sinhVienDelete.TenSV</p>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Ngày sinh:</label>
+                <p>@sinhVienDelete.NgaySinh?.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Địa chỉ:</label>
+                <p>@sinhVienDelete.DiaChi</p>
+            </div>
+            <div class="mb-3">
+                <label class="fw-bold">Lớp học:</label>
+                <p>@sinhVienDelete.MaLop</p>
+            </div>
+        </div>
+        <div class="ant-drawer-footer" style="text-align: right; padding: 16px;">
+            <Button HtmlType="submit" @onclick="CloseDeleteForm">
+                Hủy
+            </Button>
+            <Button HtmlType="submit" @onclick="acceptDeleteSinhVien">
+                Xác nhận
+            </Button>
+        </div>
+    </Template>
+</Drawer>
