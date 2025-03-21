@@ -47,21 +47,21 @@ namespace StudentManagement.Pages
             await LoadListLopsAsync();
         }
 
-        private async Task LoadPageTotalAsync()
-        {
-            var totalCountTMP = await SinhVienService.GetPageTotalAsync();
-            totalCount = totalCountTMP.Total;
-        }
+
 
         // default
         private async Task LoadSinhViensAsync()
         {
-            PageChange pageChange = new PageChange();
-            pageChange.PageSize = pageSize;
-            pageChange.PageIndex = pageIndex;
-            sinhviens = await SinhVienService.GetListSinhVienAsync(pageChange);
-            await LoadPageTotalAsync();
-            checksort = false;
+            PageFilterRequest pageFilterRequest = new PageFilterRequest();
+            pageFilterRequest.PageChange = new PageChange { PageIndex = pageIndex, PageSize = pageSize };
+            pageFilterRequest.IsSortByNameSinhVien = checksort;
+            if(!string.IsNullOrWhiteSpace(searchMaSV))
+            {
+                pageFilterRequest.IDSinhVien = int.Parse(searchMaSV);
+            }
+            var sinhVienPageResponse = await SinhVienService.GetListSinhVienAsync(pageFilterRequest);
+            sinhviens = sinhVienPageResponse.SinhViens;
+            totalCount = sinhVienPageResponse.Total;
         }
 
         // load list lop
@@ -72,37 +72,21 @@ namespace StudentManagement.Pages
         }
 
 
-        // sort by name
-        private async Task LoadSinhViensSortByNameAsync()
-        {
-            PageChange pageChange = new PageChange();
-            pageChange.PageSize = pageSize;
-            pageChange.PageIndex = pageIndex;
-            sinhviens = await SinhVienService.SortSinhVienListByNameAsync(pageChange);
-            checksort = true;
-        }
-
         //Change Table
         async Task OnChange(QueryModel<SinhVienResponse> queryModel)
         {
             pageIndex = queryModel.PageIndex + 1;
             pageSize = queryModel.PageSize;
-            if (checksort)
-            {
-                await LoadSinhViensSortByNameAsync();
-            }
-            else
-            {
-                await LoadSinhViensAsync();
-            }
+            await LoadSinhViensAsync();
         }
 
         //Change SinhVien Sort
         async Task OnChangeSortSinhVien()
         {
-            if (checksort == false)
+            if(checksort == false)
             {
-                await LoadSinhViensSortByNameAsync();
+                checksort = true;
+                await LoadSinhViensAsync();
             }
             else
             {
@@ -121,13 +105,6 @@ namespace StudentManagement.Pages
 
         private async Task acceptAddSinhVien()
         {
-            if (string.IsNullOrWhiteSpace(newStudent.TenSV) ||
-            newStudent.NgaySinh == default ||
-            string.IsNullOrWhiteSpace(newStudent.DiaChi))
-            {
-                await JS.InvokeVoidAsync("alert", "Vui lòng nhập đầy đủ thông tin sinh viên!");
-                return;
-            }
             var response = await SinhVienService.AddSinhVienAsync(newStudent);
             if (response.Success == true)
             {
@@ -158,13 +135,7 @@ namespace StudentManagement.Pages
         }
         private async Task acceptUpdateSinhVien()
         {
-            if (string.IsNullOrWhiteSpace(sinhVienEdit.TenSV) ||
-            sinhVienEdit.NgaySinh == default ||
-            string.IsNullOrWhiteSpace(sinhVienEdit.DiaChi))
-            {
-                await JS.InvokeVoidAsync("alert", "Vui lòng nhập đầy đủ thông tin sinh viên!");
-                return;
-            }
+            
             var response = await SinhVienService.UpdateSinhVienAsync(sinhVienEdit);
             if (response.Success == true)
             {
@@ -217,25 +188,7 @@ namespace StudentManagement.Pages
         //search
         private async Task SearchStudent()
         {
-            if (!string.IsNullOrWhiteSpace(searchMaSV))
-            {
-                var svrequest = new RequestSinhVien { MaSV = int.Parse(searchMaSV) };
-
-                var sinhvien = await SinhVienService.SearchBySinhVienIdAsync(svrequest);
-                if (sinhvien == null)
-                {
-                    await JS.InvokeVoidAsync("alert", "Không tìm thấy sinh viên!");
-                    return;
-                }
-
-                sinhviens.Clear();
-                sinhviens.Add(sinhvien);
-                totalCount = sinhviens.Count();
-            }
-            else
-            {
-                await LoadSinhViensAsync();
-            }
+            await LoadSinhViensAsync();
         }
 
         

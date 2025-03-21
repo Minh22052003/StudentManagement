@@ -20,16 +20,23 @@ namespace StudentManagement.NHibernate.Repositories
         }
 
 
-        public async Task<List<SinhVien>> GetSinhVienListAsync(int PageSize, int PageIndex)
+        public async Task<List<SinhVien>> GetSinhVienListAsync(int PageSize, int PageIndex, int? IDSinhVien, bool? SortByName)
         {
-            Console.WriteLine("PageSize: " + PageSize);
-            Console.WriteLine("PageIndex: " + PageIndex);
             var sinhviens = new List<SinhVien>();
             try
             {
-                sinhviens = await _session.Query<SinhVien>()
-                                    .Skip((PageIndex - 1) * PageSize)
-                                    .Take(PageSize).ToListAsync();
+                if(IDSinhVien != null)
+                {
+                    sinhviens = await _session.Query<SinhVien>().Where(x => x.MaSV == IDSinhVien).ToListAsync();
+                }
+                else if (SortByName == true)
+                {
+                    sinhviens = await _session.Query<SinhVien>().OrderBy(x => x.TenSV).Skip((PageIndex - 1) * PageSize).Take(PageSize).ToListAsync();
+                }
+                else
+                {
+                    sinhviens = await _session.Query<SinhVien>().Skip((PageIndex - 1) * PageSize).Take(PageSize).ToListAsync();
+                }
             }
             catch (Exception ex)
             {

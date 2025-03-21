@@ -105,17 +105,29 @@ namespace GrpcService.Services
             }
         }
 
-        public async Task<List<SinhVienResponse>> GetListSinhVienAsync(PageChange pageChange)
+        public async Task<SinhVienPageResponse> GetListSinhVienAsync(PageFilterRequest pageFilterRequest)
         {
             try
             {
-                var students = await _studentRepository.GetSinhVienListAsync(pageChange.PageSize, pageChange.PageIndex);
+
+                var students = await _studentRepository.GetSinhVienListAsync(pageFilterRequest.PageChange.PageSize, pageFilterRequest.PageChange.PageIndex, pageFilterRequest.IDSinhVien, pageFilterRequest.IsSortByNameSinhVien);
                 var studentsResponse = new List<SinhVienResponse>();
                 for (int i = 0; i < students.Count; i++)
                 {
                     studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
                 }
-                return studentsResponse;
+                var studentPageResponse = new SinhVienPageResponse();
+                studentPageResponse.SinhViens = studentsResponse;
+                if(pageFilterRequest.IDSinhVien != null)
+                {
+                    studentPageResponse.Total = 1;
+                }
+                else
+                {
+                    studentPageResponse.Total = await _studentRepository.GetTotalSinhVienAsync();
+                }
+
+                return studentPageResponse;
             }
             catch(Exception ex)
             {
