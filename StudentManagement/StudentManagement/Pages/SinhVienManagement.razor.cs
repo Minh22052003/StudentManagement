@@ -7,47 +7,46 @@ using Share.DTOs.Common;
 using System.Threading.Tasks;
 using AntDesign;
 using AntDesign.TableModels;
+using System.ServiceModel.Channels;
+using System;
 
 namespace StudentManagement.Pages
 {
     public partial class SinhVienManagement : ComponentBase
     {
-        List<SinhVienResponse> sinhviens = new();
-        RequestSinhVienAdd newStudent = new();
-        SinhVienResponse sinhVienEdit = new();
-        SinhVienResponse sinhVienDelete = new();
-        LopListResponse classes = new();
-        List<LopResponse> lopList = new();
+        [Inject]
+        ISinhVienService SinhVienService { get; set; } = default!;
+
+        [Inject]
+        ILopHocService LopHocService { get; set; } = default!;
+
+        [Inject]
+        IMessageService _message { get; set; } = default!;
+
+        string searchMaSV = "";
+
+        int pageIndex = 1;
+        int pageSize = 10;
+        int totalCount = 0;
+        int MaSvDelete = 0;
 
         bool checksort = false;
         bool visibleAdd = false;
         bool visibleEdit = false;
         bool visibleDelete = false;
 
-        string searchMaSV = "";
-        int pageIndex = 1;
-        int pageSize = 10;
-        int totalCount = 0;
+        List<SinhVienResponse> sinhviens = new();
+        RequestSinhVienAdd newStudent = new();
+        SinhVienResponse sinhVienEdit = new();
+        LopListResponse classes = new();
+        List<LopResponse> lopList = new();
 
-        IEnumerable<SinhVienResponse> _selectedRows ;
-
-
-        [Inject]
-        ISinhVienService SinhVienService { get; set; }
-
-        [Inject]
-        ILopHocService LopHocService { get; set; }
-
-        [Inject]
-        IJSRuntime JS { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             await LoadSinhViensAsync();
             await LoadListLopsAsync();
         }
-
-
 
         // default
         private async Task LoadSinhViensAsync()
@@ -75,13 +74,13 @@ namespace StudentManagement.Pages
         //Change Table
         async Task OnChange(QueryModel<SinhVienResponse> queryModel)
         {
-            pageIndex = queryModel.PageIndex + 1;
+            pageIndex = queryModel.PageIndex;
             pageSize = queryModel.PageSize;
             await LoadSinhViensAsync();
         }
 
         //Change SinhVien Sort
-        async Task OnChangeSortSinhVien()
+        async Task OnSortSinhVien()
         {
             if(checksort == false)
             {
@@ -95,6 +94,12 @@ namespace StudentManagement.Pages
             }
         }
 
+        //search
+        private async Task SearchStudent()
+        {
+            await LoadSinhViensAsync();
+        }
+
         // add
         #region add Sinh Vien
         private async Task ShowAddForm()
@@ -105,22 +110,27 @@ namespace StudentManagement.Pages
 
         private async Task acceptAddSinhVien()
         {
+            if (newStudent.MaSV == 0 || newStudent.TenSV == "" || newStudent.NgaySinh == null || newStudent.DiaChi == "")
+            {
+                return;
+            }
             var response = await SinhVienService.AddSinhVienAsync(newStudent);
             if (response.Success == true)
             {
                 CloseAddForm();
-                await JS.InvokeVoidAsync("alert", "Thêm sinh viên thành công!");
+                await _message.Success("Thêm sinh viên thành công!");
                 await LoadSinhViensAsync();
             }
             else
             {
-                await JS.InvokeVoidAsync("alert", "Thêm sinh viên thất bại!");
+                await _message.Error("Thêm sinh viên thất bại!");
             }
         }
 
         private void CloseAddForm()
         {
             this.visibleAdd = false;
+            newStudent = new RequestSinhVienAdd();
         }
 
         #endregion
@@ -129,53 +139,54 @@ namespace StudentManagement.Pages
         #region edit Sinh Vien
         private async Task ShowEditForm(SinhVienResponse rowEdit)
         {
-            var requestsv = new RequestSinhVien { MaSV = rowEdit.MaSV };
-            sinhVienEdit = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
+            sinhVienEdit = await SinhVienService.GetSinhVienByIDAsync(rowEdit.MaSV.ToString());
             visibleEdit = true;
         }
         private async Task acceptUpdateSinhVien()
         {
-            
+            if(sinhVienEdit.TenSV == "" || sinhVienEdit.NgaySinh == null || sinhVienEdit.DiaChi == "")
+            {
+                return;
+            }
             var response = await SinhVienService.UpdateSinhVienAsync(sinhVienEdit);
             if (response.Success == true)
             {
                 await LoadSinhViensAsync();
-                await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thành công!");
+                await _message.Success("Chỉnh sửa sinh viên thành công!");
                 CloseEditForm();
             }
             else
             {
-                await JS.InvokeVoidAsync("alert", "Chỉnh sửa sinh viên thất bại!");
+                await _message.Error("Chỉnh sửa sinh viên thất bại!");
             }
         }
         private void CloseEditForm()
         {
             visibleEdit = false;
+            sinhVienEdit = new SinhVienResponse();
         }
 
         #endregion
 
         // delete
         #region delete Sinh Vien
-        private async Task ShowDeleteForm(SinhVienResponse rowEdit)
+        private void ShowDeleteForm(SinhVienResponse rowEdit)
         {
-            var requestsv = new RequestSinhVien { MaSV = rowEdit.MaSV };
-            sinhVienDelete = await SinhVienService.SearchBySinhVienIdAsync(requestsv);
+            MaSvDelete = rowEdit.MaSV;
             visibleDelete = true;
         }
         private async Task acceptDeleteSinhVien()
         {
-            var requestsv = new RequestSinhVien { MaSV = sinhVienDelete.MaSV };
-            var response = await SinhVienService.DeleteSinhVienAsync(requestsv);
+            var response = await SinhVienService.DeleteSinhVienAsync(MaSvDelete.ToString());
             if (response.Success == true)
             {
                 await LoadSinhViensAsync();
-                await JS.InvokeVoidAsync("alert", "Xóa sinh viên thành công!");
+                await _message.Success("Xóa sinh viên thành công!");
                 CloseDeleteForm();
             }
             else
             {
-                await JS.InvokeVoidAsync("alert", "Xóa sinh viên thất bại!");
+                await _message.Error("Xóa sinh viên thất bại!");
             }
         }
         private void CloseDeleteForm()
@@ -185,11 +196,6 @@ namespace StudentManagement.Pages
 
         #endregion
 
-        //search
-        private async Task SearchStudent()
-        {
-            await LoadSinhViensAsync();
-        }
 
         
     }

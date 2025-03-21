@@ -20,7 +20,7 @@ namespace StudentManagement.NHibernate.Repositories
         }
 
 
-        public async Task<List<SinhVien>> GetSinhVienListAsync(int PageSize, int PageIndex, int? IDSinhVien, bool? SortByName)
+        public async Task<List<SinhVien>> GetSinhVienPageAsync(int PageSize, int PageIndex, int? IDSinhVien, bool SortByName)
         {
             var sinhviens = new List<SinhVien>();
             try
@@ -45,24 +45,6 @@ namespace StudentManagement.NHibernate.Repositories
             }
             return sinhviens;
         }
-        public async Task<SinhVien> AddSinhVienAsync(SinhVien sinhVien)
-        {
-            try
-            {
-                using var transaction = _session.BeginTransaction();
-
-                await _session.SaveAsync(sinhVien);
-
-                await transaction.CommitAsync();
-
-                return sinhVien;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
 
 
         public Task<SinhVien> GetSinhVienByIDAsync(int id)
@@ -77,35 +59,19 @@ namespace StudentManagement.NHibernate.Repositories
                 throw;
             }
         }
-
-        public async Task<SinhVien> UpdateSinhVienAsync(SinhVien sinhVien)
+        public async Task<bool> AddSinhVienAsync(SinhVien sinhVien)
         {
             try
             {
+                if(await CheckSinhVienExistsAsync(sinhVien.MaSV))
+                {
+                    return false;
+                }
                 using var transaction = _session.BeginTransaction();
-                await _session.UpdateAsync(sinhVien);
+                await _session.SaveAsync(sinhVien);
                 await transaction.CommitAsync();
-                return sinhVien;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Loi: " + ex.ToString());
-                throw;
-            }
 
-        }
-
-        public async Task<bool> DeleteSinhVienAsync(SinhVien sinhVien)
-        {
-            try
-            {
-                using var transaction = _session.BeginTransaction();
-
-                await _session.DeleteAsync(sinhVien);
-
-                await transaction.CommitAsync();
                 return true;
-
             }
             catch (Exception ex)
             {
@@ -113,19 +79,52 @@ namespace StudentManagement.NHibernate.Repositories
             }
         }
 
-        public async Task<List<SinhVien>> GetSinhVienListSortByNameAsync(int PageSize, int PageIndex)
+
+        public async Task<bool> UpdateSinhVienAsync(SinhVien sinhVien)
         {
-            return await _session.Query<SinhVien>().OrderBy(x => x.TenSV).Skip((PageIndex - 1) * PageSize).Take(PageSize).ToListAsync();
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+                await _session.UpdateAsync(sinhVien);
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        public async Task<List<SinhVien>> GetSinhVienListByLopHocAsync(int MaLop)
+        public async Task<bool> DeleteSinhVienAsync(int MaSV)
         {
-            return await _session.Query<SinhVien>().Where(x=>x.MaLop == MaLop).ToListAsync();
+            try
+            {
+                using var transaction = _session.BeginTransaction();
+                await _session.DeleteAsync(GetSinhVienByIDAsync(MaSV).Result);
+                await transaction.CommitAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        public async Task<int> GetTotalSinhVienAsync()
+        public Task<int> CountSinhVienAsync()
         {
-            return await _session.Query<SinhVien>().CountAsync();
+            return _session.Query<SinhVien>().CountAsync();
+        }
+
+        public Task<bool> CheckSinhVienExistsAsync(int id)
+        {
+            if (_session.Query<SinhVien>().Any(x => x.MaSV == id))
+            {
+                return Task.FromResult(true);
+            }
+            else
+            {
+                return Task.FromResult(false);
+            }
         }
     }
 }

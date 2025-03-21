@@ -7,7 +7,6 @@ using NHibernate;
 using StudentManagement.NHibernate.DataAccess;
 using StudentManagement.NHibernate.IRepositories;
 using StudentManagement.NHibernate.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Additional configuration is required to successfully run gRPC on macOS.
@@ -20,6 +19,7 @@ builder.Services.AddGrpcReflection();
 
 // add NHibernate
 builder.Services.AddSingleton<NHibernateSessionManager>();
+
 // add ISessionFactory
 builder.Services.AddSingleton(provider =>
 {
@@ -50,14 +50,9 @@ builder.Services.AddScoped<ILopHocService, LopHocService>();
 builder.Services.AddScoped<IGiaoVienService, GiaoVienService>();
 builder.Services.AddScoped<IExcelExportService, ExcelExportService>();
 
-
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 // Map gRPC
 app.MapGrpcService<SinhVienService>();
 app.MapGrpcService<LopHocService>();

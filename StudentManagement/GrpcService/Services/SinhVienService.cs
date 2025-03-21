@@ -19,32 +19,72 @@ namespace GrpcService.Services
             _lopHocRepository = lopHocRepository;
             _mapper = mapper;
         }
+
+        public async Task<SinhVienPageResponse> GetListSinhVienAsync(PageFilterRequest pageFilterRequest)
+        {
+            try
+            {
+
+                var students = await _studentRepository.GetSinhVienPageAsync(pageFilterRequest.PageChange.PageSize, pageFilterRequest.PageChange.PageIndex, pageFilterRequest.IDSinhVien, pageFilterRequest.IsSortByNameSinhVien);
+                var studentsResponse = new List<SinhVienResponse>();
+                for (int i = 0; i < students.Count; i++)
+                {
+                    studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
+                }
+                var studentPageResponse = new SinhVienPageResponse();
+                studentPageResponse.SinhViens = studentsResponse;
+                if (pageFilterRequest.IDSinhVien != null)
+                {
+                    studentPageResponse.Total = 1;
+                }
+                else
+                {
+                    studentPageResponse.Total = await _studentRepository.CountSinhVienAsync();
+                }
+
+                return studentPageResponse;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<SinhVienResponse> GetSinhVienByIDAsync(string MaSV)
+        {
+            try
+            {
+                var student = await _studentRepository.GetSinhVienByIDAsync(int.Parse(MaSV));
+                var studentResponse = _mapper.Map<SinhVienResponse>(student);
+                return studentResponse;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
         public async Task<BoolResponse> AddSinhVienAsync(RequestSinhVienAdd requestadd)
         {
             BoolResponse checkadd = new();
             checkadd.Success = false;
             try
             {
-                
                 var student = _mapper.Map<SinhVien>(requestadd);
+
                 student.MaLop = requestadd.MaLop;
                 student.LopHoc = await _lopHocRepository.GetLopHocById(student.MaLop);
-                var requestSV = new RequestSinhVien { MaSV = student.MaSV };
-                if (await SearchBySinhVienIdAsync(requestSV) != null)
-                {
-                    return checkadd;
-                }
+
                 var studentadd = await _studentRepository.AddSinhVienAsync(student);
-                if(studentadd == null)
-                {
-                    return checkadd;
-                }
-                checkadd.Success = true;
+
+                checkadd.Success = studentadd;
                 return checkadd;
             }
             catch (Exception ex)
             {
-                throw;
+                Console.WriteLine(ex.Message);
+                return checkadd;
             }
         }
 
@@ -58,45 +98,25 @@ namespace GrpcService.Services
                 student.MaLop = request.MaLop;
                 student.LopHoc = await _lopHocRepository.GetLopHocById(student.MaLop);
 
-                var studenttmp = await _studentRepository.GetSinhVienByIDAsync(student.MaSV);
-                if (studenttmp == null)
-                {
-                    return checkupdate;
-                }
-
-                studenttmp.TenSV = student.TenSV;
-                studenttmp.NgaySinh = student.NgaySinh;
-                studenttmp.DiaChi = student.DiaChi;
-                studenttmp.MaLop = student.MaLop;
-                studenttmp.LopHoc = student.LopHoc;
-
-                var studentupdate = await _studentRepository.UpdateSinhVienAsync(studenttmp);
-                if (studentupdate == null)
-                {
-                    return checkupdate;
-                }
-                checkupdate.Success = true;
+                var studentupdate = await _studentRepository.UpdateSinhVienAsync(student);
+                
+                checkupdate.Success = studentupdate;
                 return checkupdate;
             }
             catch (Exception ex)
             {
-                throw;
+                Console.WriteLine(ex.Message);
+                return checkupdate;
             }
         }
 
-        public async Task<BoolResponse> DeleteSinhVienAsync(RequestSinhVien request)
+        public async Task<BoolResponse> DeleteSinhVienAsync(string MaSV)
         {
             BoolResponse checkdelete = new();
             checkdelete.Success = false;
             try
             {
-                var student = await _studentRepository.GetSinhVienByIDAsync(request.MaSV);
-                if (student == null)
-                {
-                    return checkdelete;
-                }
-
-                checkdelete.Success = await _studentRepository.DeleteSinhVienAsync(student);
+                checkdelete.Success = await _studentRepository.DeleteSinhVienAsync(int.Parse(MaSV));
                 return checkdelete;
             }
             catch (Exception ex)
@@ -105,82 +125,5 @@ namespace GrpcService.Services
             }
         }
 
-        public async Task<SinhVienPageResponse> GetListSinhVienAsync(PageFilterRequest pageFilterRequest)
-        {
-            try
-            {
-
-                var students = await _studentRepository.GetSinhVienListAsync(pageFilterRequest.PageChange.PageSize, pageFilterRequest.PageChange.PageIndex, pageFilterRequest.IDSinhVien, pageFilterRequest.IsSortByNameSinhVien);
-                var studentsResponse = new List<SinhVienResponse>();
-                for (int i = 0; i < students.Count; i++)
-                {
-                    studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
-                }
-                var studentPageResponse = new SinhVienPageResponse();
-                studentPageResponse.SinhViens = studentsResponse;
-                if(pageFilterRequest.IDSinhVien != null)
-                {
-                    studentPageResponse.Total = 1;
-                }
-                else
-                {
-                    studentPageResponse.Total = await _studentRepository.GetTotalSinhVienAsync();
-                }
-
-                return studentPageResponse;
-            }
-            catch(Exception ex)
-            {
-                return null;
-            }
-        }
-
-
-        public async Task<SinhVienResponse> SearchBySinhVienIdAsync(RequestSinhVien request)
-        {
-            try
-            {
-                var student = await _studentRepository.GetSinhVienByIDAsync(request.MaSV);
-                var studentResponse = _mapper.Map<SinhVienResponse>(student);
-                return studentResponse;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
-        public async Task<List<SinhVienResponse>> SortSinhVienListByNameAsync(PageChange pageChange)
-        {
-            try
-            {
-                var students = await _studentRepository.GetSinhVienListSortByNameAsync(pageChange.PageSize, pageChange.PageIndex);
-                var studentsResponse = new List<SinhVienResponse>();
-                for (int i = 0; i < students.Count; i++)
-                {
-                    studentsResponse.Add(_mapper.Map<SinhVienResponse>(students[i]));
-                }
-                return studentsResponse;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-        }
-
-        public async Task<PageTotalResponse> GetPageTotalAsync()
-        {
-            try
-            {
-                var pageChange = new PageTotalResponse();
-                pageChange.Total = await _studentRepository.GetTotalSinhVienAsync();
-                return pageChange;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

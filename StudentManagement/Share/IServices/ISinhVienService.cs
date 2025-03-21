@@ -12,21 +12,17 @@ namespace Share.IServices
         Task<SinhVienPageResponse> GetListSinhVienAsync(PageFilterRequest pageFilterRequest);
 
         [OperationContract]
+        Task<SinhVienResponse> GetSinhVienByIDAsync(string MaSV);
+
+        [OperationContract]
         Task<BoolResponse> AddSinhVienAsync(RequestSinhVienAdd request);
 
         [OperationContract]
         Task<BoolResponse> UpdateSinhVienAsync(SinhVienResponse request);
 
         [OperationContract]
-        Task<BoolResponse> DeleteSinhVienAsync(RequestSinhVien request);
+        Task<BoolResponse> DeleteSinhVienAsync(string MaSV);
 
-        [OperationContract]
-        Task<List<SinhVienResponse>> SortSinhVienListByNameAsync(PageChange pageChange);
 
-        [OperationContract]
-        Task<SinhVienResponse> SearchBySinhVienIdAsync(RequestSinhVien request);
-
-        [OperationContract]
-        Task<PageTotalResponse> GetPageTotalAsync();
     }
 }
