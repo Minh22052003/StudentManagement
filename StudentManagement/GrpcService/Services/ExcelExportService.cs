@@ -19,7 +19,8 @@ namespace GrpcService.Services
         public async Task<BoolResponse> ExportToExcelGiaoVienAsync(string MaGV)
         {
             string sheetName = "Sheet1";
-            string fileName = "Data.xlsx";
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string fileName = $"GiaoVien_{timestamp}.xlsx";
             int j = 0;
             BoolResponse checkexport = new BoolResponse();
             checkexport.Success = false;

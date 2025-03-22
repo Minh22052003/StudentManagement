@@ -44,7 +44,7 @@ namespace StudentManagement.Pages
 
         private async Task LoadlopReponseCharts(int maGV)
         {
-            LopReponseCharts = await _lopHocService.SearchByGiaoVienIdAsync(maGV.ToString());
+            LopReponseCharts = await _lopHocService.SearchLopHocByGiaoVienIdAsync(maGV.ToString());
         }
 
         ColumnConfig config1 = new ColumnConfig

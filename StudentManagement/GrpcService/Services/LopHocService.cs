@@ -34,7 +34,7 @@ namespace GrpcService.Services
             }
         }
 
-        public async Task<List<LopReponseChart>> SearchByGiaoVienIdAsync(string MaGV)
+        public async Task<List<LopReponseChart>> SearchLopHocByGiaoVienIdAsync(string MaGV)
         {
             try
             {
